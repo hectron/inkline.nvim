@@ -20,7 +20,7 @@ function M.setup(colors, opts)
     Function            = { fg = colors.gold },
     Include             = { fg = colors.gold },
     String              = { fg = colors.green },
-    Search              = { bg = colors.white },
+    Search              = { bg = colors.white, fg = colors.black },
     rubySymbol          = { fg = colors.teal },
     rubyPseudoVariable  = { fg = colors.teal },
     rubyStringDelimiter = { fg = colors.green },
