@@ -7,7 +7,6 @@ function M.load(opts)
   opts = require("inkline.config").extend(opts)
 
   -- "compile" the theme
-  local bg = vim.o.background
   local highlight_groups = require("inkline.theme").setup(opts)
 
   if vim.g.colors_name then

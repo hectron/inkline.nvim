@@ -1,7 +1,9 @@
 local M = {}
 
----@class Palette
+---@class inkline.Palette
 M.base_colors = {
+  none         = "NONE",
+  bg           = "#000000",
   black        = "#000000",
   blue         = "#0000FF",
   dark_blue    = "#00008B",
@@ -24,8 +26,6 @@ function M.setup(opts)
   opts = require("inkline.config").extend(opts)
 
   local colors = vim.deepcopy(M.base_colors)
-
-  colors.none = "NONE"
 
   if opts.transparent then
     colors.bg = colors.none
