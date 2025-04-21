@@ -4,6 +4,8 @@ local M = {}
 M.base_colors = {
   none         = "NONE",
   bg           = "#000000",
+  bg_alt       = "#1e2124",
+  bg_highlight = "#3c4048",
   black        = "#000000",
   blue         = "#0000FF",
   dark_blue    = "#00008B",
@@ -19,6 +21,17 @@ M.base_colors = {
   white        = "#FFFFFF",
   yellow       = "#FFFF00",
   pale_yellow  = "#FFEE98",
+  fg           = "#ffffff",
+  grey         = "#7b8496",
+  light_blue   = "#5ea1ff",
+  light_green  = "#5eff6c",
+  cyan         = "#5ef1ff",
+  light_red    = "#ff6e5e",
+  light_yellow = "#f1ff5e",
+  magenta      = "#ff5ef1",
+  pink         = "#ff5ea0",
+  light_orange = "#ffbd5e",
+  light_purple = "#bd5eff",
 }
 
 ---@param opts? inkline.Config
