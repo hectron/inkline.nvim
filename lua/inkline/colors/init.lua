@@ -6,6 +6,7 @@ M.base_colors = {
   bg           = "#000000",
   bg_alt       = "#1e2124",
   bg_highlight = "#3c4048",
+  dark_grey_5  = "#6b6f78", -- slightly lighter than default NvimDarkGrey4
   black        = "#000000",
   blue         = "#0000FF",
   dark_blue    = "#00008B",

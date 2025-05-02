@@ -44,6 +44,9 @@ function M.setup(colors, opts)
     -- Treesitter
     DiagnosticUnnecessary = { fg = colors.grey, italic = true },
 
+    -- GitSigns
+    GitSignsCurrentLineBlame = { fg = colors.dark_grey_5 }
+
     -- ["@variable.member.lua"] = { fg = colors.light_blue },
 
     -- LSP
