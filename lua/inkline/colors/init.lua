@@ -23,6 +23,7 @@ M.base_colors = {
   yellow       = "#FFFF00",
   pale_yellow  = "#FFEE98",
   fg           = "#ffffff",
+  fg_gutter    = "#2c2f33",
   grey         = "#7b8496",
   light_blue   = "#5ea1ff",
   light_green  = "#5eff6c",
