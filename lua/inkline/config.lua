@@ -12,6 +12,14 @@ M.options = nil
 ---@param options? inkline.Config
 function M.setup(options)
   M.options = vim.tbl_deep_extend("force", {}, M.defaults, options or {})
+
+  vim.api.nvim_create_autocmd('BufEnter', {
+    callback = function()
+      -- These need to be applied on each buffer enter event
+      vim.api.nvim_set_hl(0, "DropBarIconUISeparatorMenu", {})
+      vim.api.nvim_set_hl(0, "DropBarMenuHoverIcon", { reverse = false })
+    end
+  })
 end
 
 ---@param options? inkline.Config
