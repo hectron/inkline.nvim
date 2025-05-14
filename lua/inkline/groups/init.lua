@@ -27,6 +27,9 @@ function M.setup(colors, opts)
     rubyInterpolation     = { fg = colors.white },
     StatusLine            = { bg = colors.none },
     CursorLineNr          = { fg = colors.light_orange, bold = true },
+    PmenuSel              = { bg = colors.bg_highlight, reverse = false, underline = false},
+    Visual                = { bg = colors.bg_highlight },
+    WinBar                = { fg = colors.white, bold = false },
 
     -- Diff Highlights
     DiffAdd               = { bg = colors.dark_blue },
@@ -45,7 +48,21 @@ function M.setup(colors, opts)
     DiagnosticUnnecessary = { fg = colors.grey, italic = true },
 
     -- GitSigns
-    GitSignsCurrentLineBlame = { fg = colors.dark_grey_5 }
+    GitSignsCurrentLineBlame = { fg = colors.dark_grey_5 },
+
+    -- Dropbar
+    DropBarIconUISeparator = { link = "DropBarIconKindSection", bold = false },
+		DropBarIconUISeparatorNC = { link = "DropBarIconKindSectionNC" },
+		DropBarIconKindFolderNC = { link = "DropBarIconKindFolder" },
+		DropBarIconUIPickPivot = { fg = colors.red},
+		DropBarMenuHoverSymbol = { bold = true },
+		DropBarMenuHoverEntry = { bg = colors.dark_olive },
+		DropBarMenuFloatBorder = { bg = colors.white },
+		DropBarMenuHoverIcon = { reverse = false },
+		DropBarCurrentContext = { bold = true },
+		DropBarCurrentContextName = { bold = true, fg = colors.white  },
+    DropBarIconUISeparatorMenu = { bold = false},
+
 
     -- ["@variable.member.lua"] = { fg = colors.light_blue },
 
