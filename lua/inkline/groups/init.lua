@@ -5,70 +5,19 @@ local M = {}
 function M.setup(colors, opts)
   opts = require("inkline.config").extend(opts)
 
-  local groups = {
-    Normal                = { fg = colors.white, bg = colors.bg },
-    Cursor                = { fg = colors.black, bg = colors.yellow },
-    CursorLine            = { bg = colors.dark_olive },
+  local groups = {}
+  local base_groups = require("inkline.groups.base").get(colors, opts)
+  local treesitter_groups = require("inkline.groups.treesitter").get(colors, opts)
+  local lsp_groups = require("inkline.groups.lsp").get(colors, opts)
 
-    Keyword               = { fg = colors.orange },
-    Define                = { fg = colors.orange },
-    Statement             = { fg = colors.orange },
-    Comment               = { fg = colors.purple, italic = true },
-    Type                  = { fg = colors.white },
-    Identifier            = { fg = colors.white },
-    Constant              = { fg = colors.pale_yellow },
-    Function              = { fg = colors.gold },
-    Include               = { fg = colors.gold },
-    String                = { fg = colors.green },
-    Search                = { bg = colors.white, fg = colors.black },
-    rubySymbol            = { fg = colors.teal },
-    rubyPseudoVariable    = { fg = colors.teal },
-    rubyStringDelimiter   = { fg = colors.green },
-    rubyInterpolation     = { fg = colors.white },
-    StatusLine            = { bg = colors.none },
-    CursorLineNr          = { fg = colors.light_orange, bold = true },
-    PmenuSel              = { bg = colors.bg_highlight, reverse = false, underline = false},
-    Visual                = { bg = colors.bg_highlight },
-    WinBar                = { fg = colors.white, bold = false },
-
-    -- Diff Highlights
-    DiffAdd               = { bg = colors.dark_blue },
-    DiffChange            = { bg = colors.dark_magenta },
-    DiffDelete            = { fg = colors.blue, bg = colors.dark_cyan, bold = true },
-    DiffText              = { bg = colors.red, bold = true },
-
-    -- Links
-    diffAdded             = { link = "String" },
-    diffRemoved           = { link = "Statement" },
-    diffLine              = { link = "PreProc" },
-    diffSubname           = { link = "Comment" },
-    SignColumn            = {}, -- clears it
-
-    -- Treesitter
-    DiagnosticUnnecessary = { fg = colors.grey, italic = true },
-
-    -- GitSigns
-    GitSignsCurrentLineBlame = { fg = colors.dark_grey_5 },
-
-    -- Dropbar
-    DropBarIconUISeparator = { link = "DropBarIconKindSection", bold = false },
-		DropBarIconUISeparatorNC = { link = "DropBarIconKindSectionNC" },
-		DropBarIconKindFolderNC = { link = "DropBarIconKindFolder" },
-		DropBarIconUIPickPivot = { fg = colors.red},
-		DropBarMenuHoverSymbol = { bold = true },
-		DropBarMenuHoverEntry = { bg = colors.dark_olive },
-		DropBarMenuFloatBorder = { bg = colors.white },
-		DropBarMenuHoverIcon = { reverse = false },
-		DropBarCurrentContext = { bold = true },
-		DropBarCurrentContextName = { bold = true, fg = colors.white  },
-    DropBarIconUISeparatorMenu = { bold = false},
-
-
-    -- ["@variable.member.lua"] = { fg = colors.light_blue },
-
-    -- LSP
-    -- ["@lsp.type.parameter.lua"] = { fg = colors.},
-  }
+  local function merge_tables(dest, src)
+    for k, v in pairs(src) do
+      dest[k] = v
+    end
+  end
+  merge_tables(groups, base_groups)
+  merge_tables(groups, treesitter_groups)
+  merge_tables(groups, lsp_groups)
 
   return groups
 end

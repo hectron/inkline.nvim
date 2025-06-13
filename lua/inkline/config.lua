@@ -2,8 +2,9 @@ local M = {}
 
 ---@class inkline.Config
 M.defaults = {
-  dim_inactive_windows = false,
-  transparent = true,
+  dim_inactive_windows = true,
+  transparent = false,
+  purple_comments = false,
 }
 
 ---@type inkline.Config
