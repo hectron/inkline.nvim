@@ -34,6 +34,7 @@ function M.get(c)
     ["@lsp.typemod.enum.defaultLibrary"]       = "@type.builtin",
     ["@lsp.typemod.enumMember.defaultLibrary"] = "@constant.builtin",
     ["@lsp.typemod.function.defaultLibrary"]   = "@function.builtin",
+    ["@lsp.typemod.function.defaultLibrary.lua"]= { fg = c.gold },
     ["@lsp.typemod.keyword.async"]             = "@keyword.coroutine",
     ["@lsp.typemod.keyword.injected"]          = "@keyword",
     ["@lsp.typemod.macro.defaultLibrary"]      = "@function.builtin",

@@ -9,6 +9,7 @@ function M.get(c, opts)
     ["@annotation"]                 = "PreProc",
     ["@attribute"]                  = "PreProc",
     ["@boolean"]                    = "Boolean",
+    ["@boolean.lua"]                = { fg = c.orange },
     ["@character"]                  = "Character",
     ["@character.printf"]           = "SpecialChar",
     ["@character.special"]          = "SpecialChar",
@@ -43,6 +44,7 @@ function M.get(c, opts)
     ["@keyword.function"]           = { fg = c.orange }, -- For keywords used to define a function.
     ["@keyword.import"]             = "Include",
     ["@keyword.operator"]           = "@operator",
+    ["@keyword.operator.lua"]       = "Statement",
     ["@keyword.repeat"]             = "Repeat",
     ["@keyword.return"]             = "@keyword",
     ["@keyword.storage"]            = "StorageClass",
@@ -93,7 +95,7 @@ function M.get(c, opts)
     ["@variable.builtin"]           = { fg = c.pink }, -- Variable names that are defined by the languages, like `this` or `self`.
     ["@variable.parameter"]         = { fg = c.blue_green }, -- For parameters of a function.
     ["@variable.parameter.builtin"] = { fg = Util.blend_fg(c.blue_green, 0.8) }, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
-    ["@variable.parameter.lua"]     = { fg = c.white },
+    ["@variable.parameter.lua"]     = { fg = c.pink },
   }
 
   -- for i, color in ipairs(c.rainbow) do
