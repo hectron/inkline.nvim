@@ -89,6 +89,7 @@ function M.get(c, opts)
     ["@tag.attribute"]              = "@property",
     ["@tag.delimiter"]              = "Delimiter",
     ["@type"]                       = "Type",
+    ["@type.ruby"]                  = "Constant",
     ["@type.definition"]            = "Typedef",
     ["@type.qualifier"]             = "@keyword",
     ["@variable"]                   = { fg = c.fg }, -- Any variable name that does not have another highlight.
