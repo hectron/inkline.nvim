@@ -15,9 +15,12 @@ function M.setup(colors, opts)
       dest[k] = v
     end
   end
+
   merge_tables(groups, base_groups)
   merge_tables(groups, treesitter_groups)
   merge_tables(groups, lsp_groups)
+
+  opts.on_highlights(groups, colors)
 
   return groups
 end

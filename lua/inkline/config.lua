@@ -5,6 +5,8 @@ M.defaults = {
   dim_inactive_windows = true,
   transparent = false,
   purple_comments = false,
+  on_colors = function(colors) end,
+  on_highlights = function(highlights, colors) end,
 }
 
 ---@type inkline.Config

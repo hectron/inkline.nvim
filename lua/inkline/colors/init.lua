@@ -52,6 +52,8 @@ function M.setup(opts)
     colors.bg = colors.none
   end
 
+  opts.on_colors(colors)
+
   return colors, opts
 end
 
