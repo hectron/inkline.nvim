@@ -2,6 +2,7 @@
 
 inkline is a dark-theme early 2000s aesthetic theme written in Lua, ported from TextMate's **vibrant-ink** theme.
 
+![image](https://github.com/user-attachments/assets/394ad090-bbd6-443b-a53f-b4eac5437508)
 
 ## Features
 
