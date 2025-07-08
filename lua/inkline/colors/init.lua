@@ -60,7 +60,7 @@ M.base_colors = {
   type_color     = "#9b59b6", -- Purple for types
   function_color = "#3498db", -- Blue for functions
   variable_color = "#ecf0f1", -- Light grey for variables
-  string_color   = "#66FF00", -- Green for strings
+  -- string_color is set dynamically based on vibrant_strings option
   comment_color  = "#7f8c8d", -- Grey for comments
   constant_color = "#f1c40f", -- Yellow for constants
 
@@ -81,6 +81,13 @@ function M.setup(opts)
 
   if opts.transparent then
     colors.bg = colors.none
+  end
+
+  -- Set string color based on vibrant_strings option
+  if opts.vibrant_strings then
+    colors.string_color = colors.green  -- #66FF00 (vibrant lime green)
+  else
+    colors.string_color = "#27ae60"     -- soft forest green (default)
   end
 
   return colors, opts
