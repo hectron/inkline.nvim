@@ -66,7 +66,7 @@ M.base = {
 
   -- Common colors (these get overridden by variants)
   keyword        = "#e74c3c", -- Red for keywords
-  type_color     = "#9b59b6", -- Purple for types
+  type_color     = "#e080ff", -- Vibrant purple for types
   variable_color = "#ffffff", -- White for variables
   comment_color  = "#7f8c8d", -- Grey for comments
 }
