@@ -43,5 +43,43 @@ Via a comand:
 colorscheme inkline
 ```
 
+## Customization
+
+You can customize colors and highlight groups using callback functions:
+
+### Modify colors
+```lua
+require("inkline").setup({
+  on_colors = function(colors)
+    colors.purple = "#ff00ff"  -- Make purple more vibrant
+    return colors
+  end
+})
+```
+
+### Modify highlight groups
+```lua
+require("inkline").setup({
+  on_highlights = function(highlights, colors)
+    highlights.Comment = { fg = "#888888", italic = true }
+    highlights.String = { fg = "#00ff00" }
+    return highlights
+  end
+})
+```
+
+### Treesitter highlights
+Use the `@` prefix for treesitter groups:
+```lua
+require("inkline").setup({
+  on_highlights = function(highlights, colors)
+    highlights["@string"] = { fg = "#66ff00" }
+    highlights["@comment"] = { fg = "#888888", italic = true }
+    highlights["@keyword"] = { fg = "#ff6600", bold = true }
+    return highlights
+  end
+})
+```
+
 
 [neovim]: https://github.com/neovim/neovim

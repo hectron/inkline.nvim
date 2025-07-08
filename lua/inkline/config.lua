@@ -1,10 +1,17 @@
 local M = {}
 
 ---@class inkline.Config
+---@field dim_inactive_windows? boolean
+---@field transparent? boolean
+---@field purple_comments? boolean
+---@field on_colors? fun(colors: table): table
+---@field on_highlights? fun(highlights: table, colors: table): table
 M.defaults = {
   dim_inactive_windows = true,
   transparent = false,
   purple_comments = false,
+  on_colors = nil,
+  on_highlights = nil,
 }
 
 ---@type inkline.Config
