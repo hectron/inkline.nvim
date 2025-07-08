@@ -1,6 +1,9 @@
 local M = {}
 
+---@alias inkline.Style "classic" | "modern" | "retro" | "cyberpunk"
+
 ---@class inkline.Config
+---@field style? inkline.Style
 ---@field dim_inactive_windows? boolean
 ---@field transparent? boolean
 ---@field purple_comments? boolean
@@ -8,6 +11,7 @@ local M = {}
 ---@field on_colors? fun(colors: table): table
 ---@field on_highlights? fun(highlights: table, colors: table): table
 M.defaults = {
+  style = "modern",
   dim_inactive_windows = true,
   transparent = false,
   purple_comments = false,

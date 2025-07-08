@@ -3,6 +3,9 @@ local Util = require("inkline.util")
 local M = {}
 
 function M.get(c, opts)
+  local property_mapping = require("inkline.colors.property_mapping")
+  local property_color = property_mapping.get_property_color(opts.style, c)
+  
   -- stylua: ignore
   local ret = {
     ["@annotation"]                   = "PreProc",
@@ -82,7 +85,7 @@ function M.get(c, opts)
     ["@number"]                       = "Number",
     ["@number.float"]                 = "Float",
     ["@operator"]                     = { fg = Util.blend_fg(c.blue_green_2, 0.6) }, -- For any operator: `+`, but also `->` and `*` in C.
-    ["@property"]                     = { fg = c.purple_2 },
+    ["@property"]                     = { fg = property_color },
     ["@punctuation.bracket"]          = { fg = c.dark_white },                       -- For brackets and parens.
     ["@punctuation.delimiter"]        = { fg = c.blue_green_2 },                     -- For delimiters ie: `.`
     ["@punctuation.special"]          = { fg = c.blue_green_2 },                     -- For special symbols (e.g. `{}` in string interpolation)
