@@ -31,16 +31,39 @@ Example installing via Lazy:
 
 ## Usage
 
-Via the Neovim lua API:
+### Style Variants
+
+inkline.nvim comes with multiple style variants:
+
+- `modern` (default) - Contemporary colors with purple properties and bright orange constants
+- `retro` - Softer early 2000s aesthetic with pink properties and warm yellow constants  
+- `classic` - Original vibrant-ink port with teal properties and yellow constants
+- `cyberpunk` - Electric neon colors with cyan functions and matrix green constants
+
+#### Via Lua Setup
 
 ```lua
-vim.cmd([[colorscheme inkline]])
+require("inkline").setup({
+  style = "modern", -- "modern", "retro", "classic", or "cyberpunk"
+})
+require("inkline").load()
 ```
 
-Via a comand:
+#### Via Colorscheme Command
+
+```lua
+vim.cmd([[colorscheme inkline]]) -- Uses default "modern" style
+```
 
 ```vim
 colorscheme inkline
+```
+
+#### Runtime Style Switching
+
+```lua
+require("inkline").switch_style("retro")
+require("inkline").switch_style("cyberpunk")
 ```
 
 ## Customization
