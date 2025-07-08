@@ -15,7 +15,7 @@ local styles = setmetatable({}, {
 ---@param opts? inkline.Config
 function M.setup(opts)
   opts = require("inkline.config").extend(opts)
-  
+
   -- Get base colors for the selected style
   local colors = vim.deepcopy(styles[opts.style])
 
@@ -26,9 +26,9 @@ function M.setup(opts)
 
   -- Set string color based on vibrant_strings option
   if opts.vibrant_strings then
-    colors.string_color = colors.green  -- #66FF00 (vibrant lime green)
+    colors.string_color = colors.green -- #66FF00 (vibrant lime green)
   else
-    colors.string_color = "#27ae60"     -- soft forest green (default)
+    colors.string_color = "#27ae60"    -- soft forest green (default)
   end
 
   -- Apply user color overrides
@@ -43,9 +43,10 @@ end
 ---@type inkline.Style[]
 M.styles = {
   "classic",
-  "modern", 
+  "modern",
   "retro",
   "cyberpunk"
 }
 
 return M
+

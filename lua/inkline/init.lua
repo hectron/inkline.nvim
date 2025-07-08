@@ -35,10 +35,11 @@ end
 function M.switch_style(style)
   local colors_module = require("inkline.colors")
   if not vim.tbl_contains(colors_module.styles, style) then
-    vim.notify("inkline.nvim: Unknown style '" .. style .. "'. Available: " .. table.concat(colors_module.styles, ", "), vim.log.levels.ERROR)
+    vim.notify("inkline.nvim: Unknown style '" .. style .. "'. Available: " .. table.concat(colors_module.styles, ", "),
+      vim.log.levels.ERROR)
     return
   end
-  
+
   -- Update config and reload
   config.options.style = style
   M.load(config.options)

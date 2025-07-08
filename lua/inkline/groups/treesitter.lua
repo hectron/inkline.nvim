@@ -5,7 +5,7 @@ local M = {}
 function M.get(c, opts)
   local property_mapping = require("inkline.colors.property_mapping")
   local property_color = property_mapping.get_property_color(opts.style, c)
-  
+
   -- stylua: ignore
   local ret = {
     ["@annotation"]                   = "PreProc",
