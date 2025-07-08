@@ -1,4 +1,4 @@
--- Base colors shared across all variants
+-- Base colors shared across all variants (derived from original main branch)
 local M = {}
 
 ---@class inkline.Palette
@@ -72,3 +72,4 @@ M.base = {
 }
 
 return M
+

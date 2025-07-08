@@ -21,4 +21,3 @@ function M.get_property_color(style, colors)
 end
 
 return M
-

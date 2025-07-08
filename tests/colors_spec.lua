@@ -14,16 +14,16 @@ describe("color palette validation", function()
   for _, style in ipairs(colors_module.styles) do
     it("has all required colors for " .. style, function()
       local colors, _ = colors_module.setup({ style = style })
-      
+
       for _, color_key in ipairs(required_colors) do
-        assert(colors[color_key] ~= nil, 
+        assert(colors[color_key] ~= nil,
           "Missing color '" .. color_key .. "' in " .. style .. " style")
       end
     end)
 
     it("has valid hex colors for " .. style, function()
       local colors, _ = colors_module.setup({ style = style })
-      
+
       -- Test key colors are valid hex
       local hex_pattern = "^#[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]$"
       assert(colors.function_color:match(hex_pattern) ~= nil,

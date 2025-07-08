@@ -37,10 +37,10 @@ describe("style loading", function()
     assert(vim.g.colors_name == "inkline-cyberpunk")
   end)
 
-  it("defaults to modern style", function()
+  it("defaults to original style", function()
     inkline.setup({})
     inkline.load()
-    assert(vim.g.colors_name == "inkline-modern")
+    assert(vim.g.colors_name == "inkline-original")
   end)
 end)
 
@@ -49,7 +49,7 @@ describe("style switching", function()
     inkline.setup({ style = "modern" })
     inkline.load()
     assert(vim.g.colors_name == "inkline-modern")
-    
+
     inkline.switch_style("retro")
     assert(vim.g.colors_name == "inkline-retro")
   end)
@@ -58,7 +58,7 @@ describe("style switching", function()
     inkline.setup({ style = "modern" })
     inkline.load()
     local original_name = vim.g.colors_name
-    
+
     inkline.switch_style("invalid")
     -- Should remain unchanged
     assert(vim.g.colors_name == original_name)
@@ -84,3 +84,4 @@ describe("configuration options", function()
     assert(vim.g.colors_name == "inkline-modern")
   end)
 end)
+

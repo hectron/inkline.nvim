@@ -10,4 +10,3 @@ M.colors = vim.tbl_deep_extend("force", base.base, {
 })
 
 return M
-

@@ -45,3 +45,4 @@ if failed_tests > 0 then
 else
   vim.cmd("cquit 0")
 end
+

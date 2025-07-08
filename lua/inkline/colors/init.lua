@@ -5,8 +5,8 @@ local styles = setmetatable({}, {
   __index = function(_, style)
     local ok, palette = pcall(require, "inkline.colors." .. style)
     if not ok then
-      vim.notify("inkline.nvim: style '" .. style .. "' not found, falling back to 'modern'", vim.log.levels.WARN)
-      palette = require("inkline.colors.modern")
+      vim.notify("inkline.nvim: style '" .. style .. "' not found, falling back to 'original'", vim.log.levels.WARN)
+      palette = require("inkline.colors.original")
     end
     return palette.colors
   end,
@@ -42,6 +42,7 @@ end
 -- Expose available styles for introspection
 ---@type inkline.Style[]
 M.styles = {
+  "original",
   "classic",
   "modern",
   "retro",
@@ -49,4 +50,3 @@ M.styles = {
 }
 
 return M
-

@@ -1,4 +1,24 @@
 -- Dynamic inkline lualine theme
+---@class LualineSectionColor
+---@field fg string
+---@field bg string
+---@field gui? string
+
+---@class LualineModeColors
+---@field a LualineSectionColor
+---@field b? LualineSectionColor
+---@field c? LualineSectionColor
+---@field x? LualineSectionColor
+---@field y? LualineSectionColor
+---@field z? LualineSectionColor
+
+---@class LualineTheme
+---@field normal LualineModeColors
+---@field insert LualineModeColors
+---@field visual LualineModeColors
+---@field terminal LualineModeColors
+---@field replace? LualineModeColors
+---@field command? LualineModeColors
 local function get_inkline_colors()
   local config = require("inkline.config")
   local current_style = (config.options and config.options.style) or "modern"
@@ -36,3 +56,4 @@ return {
     c = { bg = colors.bg_alt, fg = colors.dark_grey_5 },
   },
 }
+
