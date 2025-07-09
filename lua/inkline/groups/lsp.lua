@@ -23,7 +23,7 @@ function M.get(c)
     ["@lsp.type.operator"]                     = "@operator",
     ["@lsp.type.parameter"]                    = "@variable.parameter",
     ["@lsp.type.parameter.lua"]                = "@variable.parameter.lua",
-    ["@lsp.type.property"]                     = "@property",
+    ["@lsp.type.property"]                     = "@variable",
     ["@lsp.type.selfKeyword"]                  = "@variable.builtin",
     ["@lsp.type.selfTypeKeyword"]              = "@variable.builtin",
     ["@lsp.type.string"]                       = "@string",
