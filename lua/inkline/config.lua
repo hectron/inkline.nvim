@@ -8,14 +8,24 @@ local M = {}
 ---@field transparent? boolean
 ---@field purple_comments? boolean
 ---@field vibrant_strings? boolean
+---@field cache? boolean
 ---@field on_colors? fun(colors: table): table
 ---@field on_highlights? fun(highlights: table, colors: table): table
+
+---@class inkline.Cache
+---@field groups table<string, vim.api.keyset.highlight>
+---@field inputs inkline.CacheInputs
+
+---@class inkline.CacheInputs
+---@field colors table
+---@field options inkline.Config
 M.defaults = {
   style = "original",
   dim_inactive_windows = true,
   transparent = false,
   purple_comments = false,
   vibrant_strings = true,
+  cache = true,
   on_colors = nil,
   on_highlights = nil,
 }

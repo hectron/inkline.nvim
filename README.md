@@ -35,7 +35,8 @@ Example installing via Lazy:
 
 inkline.nvim comes with multiple style variants:
 
-- `modern` (default) - Contemporary colors with purple properties and bright orange constants
+- `original` (default) - Faithful port of TextMate's vibrant-ink theme 
+- `modern` - Contemporary colors with purple properties and bright orange constants
 - `retro` - Softer early 2000s aesthetic with pink properties and warm yellow constants  
 - `classic` - Original vibrant-ink port with teal properties and yellow constants
 - `cyberpunk` - Electric neon colors with cyan functions and matrix green constants
@@ -44,7 +45,7 @@ inkline.nvim comes with multiple style variants:
 
 ```lua
 require("inkline").setup({
-  style = "modern", -- "modern", "retro", "classic", or "cyberpunk"
+  style = "original", -- "original", "modern", "retro", "classic", or "cyberpunk"
 })
 require("inkline").load()
 ```
@@ -52,7 +53,7 @@ require("inkline").load()
 #### Via Colorscheme Command
 
 ```lua
-vim.cmd([[colorscheme inkline]]) -- Uses default "modern" style
+vim.cmd([[colorscheme inkline]]) -- Uses default "original" style
 ```
 
 ```vim
@@ -65,6 +66,35 @@ colorscheme inkline
 require("inkline").switch_style("retro")
 require("inkline").switch_style("cyberpunk")
 ```
+
+## Configuration Options
+
+inkline.nvim supports several configuration options:
+
+```lua
+require("inkline").setup({
+  style = "original",           -- Style variant
+  dim_inactive_windows = true,  -- Dim inactive windows
+  transparent = false,          -- Transparent background
+  purple_comments = false,      -- Use purple for comments
+  vibrant_strings = true,       -- Use vibrant green for strings  
+  cache = true,                 -- Enable caching for better performance
+  on_colors = function(colors) end,      -- Customize colors
+  on_highlights = function(hl, c) end,   -- Customize highlights
+})
+```
+
+### Performance Caching
+
+inkline.nvim includes a high-performance caching system that stores pre-computed highlight groups:
+
+- **Enabled by default** (`cache = true`)
+- **Cache location**: `~/.cache/nvim/inkline-{style}.json`
+- **Auto-invalidation**: Automatically detects config changes
+- **Significant speedup**: Faster theme loading on subsequent startups
+- **Manual clearing**: `require("inkline").clear_cache()`
+
+The cache is automatically invalidated when you change any configuration options, ensuring you always see your latest customizations.
 
 ## Customization
 

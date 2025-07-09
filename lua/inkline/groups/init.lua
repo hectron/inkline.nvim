@@ -4,6 +4,19 @@ local M = {}
 ---@param opts? inkline.Config
 function M.setup(colors, opts)
   opts = require("inkline.config").extend(opts)
+  local Util = require("inkline.util")
+
+  local cache_key = opts.style
+  local cache = opts.cache and Util.cache.read(cache_key)
+
+  local inputs = {
+    colors = colors,
+    options = opts,
+  }
+
+  if cache and cache.inputs and vim.deep_equal(cache.inputs, inputs) then
+    return cache.groups
+  end
 
   local groups = {}
   local base_groups, treesitter_groups, lsp_groups
@@ -28,6 +41,10 @@ function M.setup(colors, opts)
   merge_tables(groups, base_groups)
   merge_tables(groups, treesitter_groups)
   merge_tables(groups, lsp_groups)
+
+  if opts.cache then
+    Util.cache.write(cache_key, { groups = groups, inputs = inputs })
+  end
 
   return groups
 end

@@ -46,4 +46,10 @@ function M.switch_style(style)
   vim.notify("inkline.nvim: Switched to style '" .. style .. "'", vim.log.levels.INFO)
 end
 
+---Clear the cache for all styles
+function M.clear_cache()
+  require("inkline.util").cache.clear()
+  vim.notify("inkline.nvim: Cache cleared", vim.log.levels.INFO)
+end
+
 return M
