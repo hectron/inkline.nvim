@@ -31,17 +31,70 @@ Example installing via Lazy:
 
 ## Usage
 
-Via the Neovim lua API:
+### Style Variants
+
+inkline.nvim comes with multiple style variants:
+
+- `original` (default) - Faithful port of TextMate's vibrant-ink theme 
+- `modern` - Contemporary colors with purple properties and bright orange constants
+- `retro` - Softer early 2000s aesthetic with pink properties and warm yellow constants  
+- `classic` - Original vibrant-ink port with teal properties and yellow constants
+- `cyberpunk` - Electric neon colors with cyan functions and matrix green constants
+
+#### Via Lua Setup
 
 ```lua
-vim.cmd([[colorscheme inkline]])
+require("inkline").setup({
+  style = "original", -- "original", "modern", "retro", "classic", or "cyberpunk"
+})
+require("inkline").load()
 ```
 
-Via a comand:
+#### Via Colorscheme Command
+
+```lua
+vim.cmd([[colorscheme inkline]]) -- Uses default "original" style
+```
 
 ```vim
 colorscheme inkline
 ```
+
+#### Runtime Style Switching
+
+```lua
+require("inkline").switch_style("retro")
+require("inkline").switch_style("cyberpunk")
+```
+
+## Configuration Options
+
+inkline.nvim supports several configuration options:
+
+```lua
+require("inkline").setup({
+  style = "original",           -- Style variant
+  dim_inactive_windows = true,  -- Dim inactive windows
+  transparent = false,          -- Transparent background
+  purple_comments = false,      -- Use purple for comments
+  vibrant_strings = true,       -- Use vibrant green for strings  
+  cache = true,                 -- Enable caching for better performance
+  on_colors = function(colors) end,      -- Customize colors
+  on_highlights = function(hl, c) end,   -- Customize highlights
+})
+```
+
+### Performance Caching
+
+inkline.nvim includes a high-performance caching system that stores pre-computed highlight groups:
+
+- **Enabled by default** (`cache = true`)
+- **Cache location**: `~/.cache/nvim/inkline-{style}.json`
+- **Auto-invalidation**: Automatically detects config changes
+- **Significant speedup**: Faster theme loading on subsequent startups
+- **Manual clearing**: `require("inkline").clear_cache()`
+
+The cache is automatically invalidated when you change any configuration options, ensuring you always see your latest customizations.
 
 ## Customization
 
@@ -81,5 +134,16 @@ require("inkline").setup({
 })
 ```
 
+## Development
+
+### Running Tests
+
+To run the test suite:
+
+```bash
+nvim -l tests/minit.lua
+```
+
+Tests will run silently and only report failures. Exit code 0 indicates all tests passed, exit code 1 indicates failures.
 
 [neovim]: https://github.com/neovim/neovim

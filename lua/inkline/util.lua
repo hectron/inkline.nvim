@@ -1,7 +1,12 @@
 local M = {}
 
+local uv = vim.uv or vim.loop
+
 M.bg = "#000000"
 M.fg = "#ffffff"
+
+-- Cache system for performance
+M.cache = {}
 
 ---@param c  string
 local function rgb(c)
@@ -28,11 +33,63 @@ end
 function M.blend_bg(hex, amount, bg)
   return M.blend(hex, amount, bg or M.bg)
 end
+
 M.darken = M.blend_bg
 
 function M.blend_fg(hex, amount, fg)
   return M.blend(hex, amount, fg or M.fg)
 end
+
 M.lighten = M.blend_fg
+
+function M.cache.file(key)
+  return vim.fn.stdpath("cache") .. "/inkline-" .. key .. ".json"
+end
+
+---@param key string
+function M.cache.read(key)
+  ---@type boolean, inkline.Cache
+  local ok, ret = pcall(function()
+    return vim.json.decode(M.read(M.cache.file(key)), { luanil = {
+      object = true,
+      array = true,
+    } })
+  end)
+  return ok and ret or nil
+end
+
+---@param key string
+---@param data inkline.Cache
+function M.cache.write(key, data)
+  pcall(M.write, M.cache.file(key), vim.json.encode(data))
+end
+
+function M.cache.clear()
+  for _, style in ipairs({ "original", "classic", "modern", "retro", "cyberpunk" }) do
+    uv.fs_unlink(M.cache.file(style))
+  end
+end
+
+---@param filepath string
+function M.read(filepath)
+  local file = io.open(filepath, "r")
+  if not file then
+    return nil
+  end
+  local content = file:read("*a")
+  file:close()
+  return content
+end
+
+---@param filepath string
+---@param content string
+function M.write(filepath, content)
+  local file = io.open(filepath, "w")
+  if not file then
+    error("Failed to open file for writing: " .. filepath)
+  end
+  file:write(content)
+  file:close()
+end
 
 return M

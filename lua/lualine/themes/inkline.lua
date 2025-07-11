@@ -1,49 +1,59 @@
-local M = {}
+-- Dynamic inkline lualine theme
+---@class LualineSectionColor
+---@field fg string
+---@field bg string
+---@field gui? string
 
-function M.get()
-  local colors, config = require("inkline.colors").setup({})
+---@class LualineModeColors
+---@field a LualineSectionColor
+---@field b? LualineSectionColor
+---@field c? LualineSectionColor
+---@field x? LualineSectionColor
+---@field y? LualineSectionColor
+---@field z? LualineSectionColor
 
-  ---@type LualineTheme
-  local hl = {}
-
-  hl.normal = {
-    a = { fg = colors.black, bg = colors.orange },
-    b = { fg = colors.orange, bg = colors.fg_gutter },
-    c = { fg = colors.fg, bg = colors.bg },
-    x = { fg = colors.fg, bg = colors.bg },
-    y = { fg = colors.orange, bg = colors.fg_gutter },
-    z = { fg = colors.black, bg = colors.orange },
-  }
-
-  hl.insert = {
-    a = { fg = colors.black, bg = colors.green },
-    b = { fg = colors.green, bg = colors.fg_gutter },
-    y = { fg = colors.green, bg = colors.fg_gutter },
-    z = { fg = colors.black, bg = colors.green },
-  }
-
-  hl.command = {
-    a = { fg = colors.black, bg = colors.gold },
-    b = { fg = colors.gold, bg = colors.fg_gutter },
-    y = { fg = colors.gold, bg = colors.fg_gutter },
-    z = { fg = colors.black, bg = colors.gold },
-  }
-
-  hl.visual = {
-    a = { fg = colors.black, bg = colors.magenta },
-    b = { fg = colors.magenta, bg = colors.fg_gutter },
-    y = { fg = colors.magenta, bg = colors.fg_gutter },
-    z = { fg = colors.black, bg = colors.magenta },
-  }
-
-  hl.terminal = {
-    a = { fg = colors.black, bg = colors.teal },
-    b = { fg = colors.teal, bg = colors.fg_gutter },
-    y = { fg = colors.teal, bg = colors.fg_gutter },
-    z = { fg = colors.black, bg = colors.teal },
-  }
-
-  return hl
+---@class LualineTheme
+---@field normal LualineModeColors
+---@field insert LualineModeColors
+---@field visual LualineModeColors
+---@field terminal LualineModeColors
+---@field replace? LualineModeColors
+---@field command? LualineModeColors
+local function get_inkline_colors()
+  local config = require("inkline.config")
+  local current_style = (config.options and config.options.style) or "modern"
+  local colors, _ = require("inkline.colors").setup({ style = current_style })
+  return colors
 end
 
-return M.get()
+local colors = get_inkline_colors()
+
+return {
+  normal = {
+    a = { bg = colors.function_color, fg = colors.bg, gui = "bold" },
+    b = { bg = colors.bg_highlight, fg = colors.function_color },
+    c = { bg = colors.bg_alt, fg = colors.fg },
+  },
+  insert = {
+    a = { bg = colors.green, fg = colors.bg, gui = "bold" },
+    b = { bg = colors.bg_highlight, fg = colors.green },
+  },
+  command = {
+    a = { bg = colors.constant_color, fg = colors.bg, gui = "bold" },
+    b = { bg = colors.bg_highlight, fg = colors.constant_color },
+  },
+  visual = {
+    a = { bg = colors.purple, fg = colors.bg, gui = "bold" },
+    b = { bg = colors.bg_highlight, fg = colors.purple },
+  },
+  terminal = {
+    a = { bg = colors.cyan, fg = colors.bg, gui = "bold" },
+    b = { bg = colors.bg_highlight, fg = colors.cyan },
+  },
+  inactive = {
+    a = { bg = colors.bg_alt, fg = colors.dark_grey_5 },
+    b = { bg = colors.bg_alt, fg = colors.dark_grey_5 },
+    c = { bg = colors.bg_alt, fg = colors.dark_grey_5 },
+  },
+}
+
