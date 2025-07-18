@@ -81,17 +81,25 @@ function M.get(colors, opts)
     DiagnosticInfo          = { fg = colors.light_blue },
     DiagnosticHint          = { fg = colors.teal },
 
-    -- Floats
-    FloatBorder             = { fg = colors.blue_green },
-    NormalFloat             = { fg = colors.white, bg = colors.bg },
+    -- Float window highlights that which-key might inherit from
+    NormalFloat                = { fg = colors.fg, bg = opts.transparent and colors.none or colors.bg },
+    FloatBorder                = { fg = colors.dark_grey_5, bg = colors.none },
+    FloatTitle                 = { fg = colors.yellow, bold = true, bg = colors.none },
 
     -- Which-key
-    WhichKey                = { fg = colors.teal },
-    WhichKeyGroup           = { fg = colors.blue },
-    WhichKeyDesc            = { fg = colors.white },
-    WhichKeySeperator       = { fg = colors.dark_grey_5 },
-    WhichKeyFloat           = { bg = colors.bg },
-    WhichKeyValue           = { fg = colors.dark_grey_5 },
+    WhichKey                   = { fg = colors.yellow, bg = colors.bg, bold = true },
+    WhichKeyGroup              = { fg = colors.teal },
+    WhichKeyDesc               = { fg = colors.fg },
+    WhichKeySeperator          = { fg = colors.dark_grey_5 },
+    WhichKeyIconAzure          = { fg = colors.light_blue },
+    WhichKeyIconBlue           = { fg = colors.blue },
+    WhichKeyIconCyan           = { fg = colors.cyan },
+    WhichKeyIconGreen          = { fg = colors.green },
+    WhichKeyIconGrey           = { fg = colors.grey },
+    WhichKeyIconOrange         = { fg = colors.orange },
+    WhichKeyIconPurple         = { fg = colors.purple },
+    WhichKeyIconRed            = { fg = colors.red },
+    WhichKeyIconYellow         = { fg = colors.yellow },
 
     -- Git commit
     gitcommitOverflow       = { fg = colors.red },
