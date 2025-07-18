@@ -20,14 +20,14 @@ local M = {}
 ---@field colors table
 ---@field options inkline.Config
 M.defaults = {
-  style = "original",
-  dim_inactive_windows = true,
-  transparent = false,
-  purple_comments = false,
-  vibrant_strings = true,
-  cache = true,
-  on_colors = nil,
-  on_highlights = nil,
+	style = "original",
+	dim_inactive_windows = true,
+	transparent = false,
+	purple_comments = false,
+	vibrant_strings = true,
+	cache = true,
+	on_colors = nil,
+	on_highlights = nil,
 }
 
 ---@type inkline.Config
@@ -35,28 +35,44 @@ M.options = nil
 
 ---@param options? inkline.Config
 function M.setup(options)
-  M.options = vim.tbl_deep_extend("force", {}, M.defaults, options or {})
+	M.options = vim.tbl_deep_extend("force", {}, M.defaults, options or {})
 
-  vim.api.nvim_create_autocmd('BufEnter', {
-    callback = function()
-      -- These need to be applied on each buffer enter event
-      vim.api.nvim_set_hl(0, "DropBarIconUISeparatorMenu", {})
-      vim.api.nvim_set_hl(0, "DropBarMenuHoverIcon", { reverse = false })
-    end
-  })
+	vim.api.nvim_create_autocmd("BufEnter", {
+		callback = function()
+			-- These need to be applied on each buffer enter event
+			vim.api.nvim_set_hl(0, "DropBarIconUISeparatorMenu", {})
+			vim.api.nvim_set_hl(0, "DropBarMenuHoverIcon", { reverse = false })
+		end,
+	})
+	if options.dim_inactive_windows then
+    local colors = require("inkline.colors").setup(options)
+
+		vim.api.nvim_create_autocmd("FocusLost", {
+			callback = function()
+        vim.api.nvim_set_hl(0, "Normal", { bg = colors.bg_alt })
+        vim.api.nvim_set_hl(0, "WinBar", { bg = colors.bg_alt })
+			end,
+		})
+		vim.api.nvim_create_autocmd("FocusGained", {
+			callback = function()
+        vim.api.nvim_set_hl(0, "Normal", { bg = colors.bg })
+        vim.api.nvim_set_hl(0, "WinBar", { bg = colors.bg })
+			end,
+		})
+	end
 end
 
 ---@param options? inkline.Config
 function M.extend(options)
-  return options and vim.tbl_deep_extend("force", {}, M.options, options) or M.options
+	return options and vim.tbl_deep_extend("force", {}, M.options, options) or M.options
 end
 
 setmetatable(M, {
-  __index = function(_, k)
-    if k == "options" then
-      return M.defaults
-    end
-  end,
+	__index = function(_, k)
+		if k == "options" then
+			return M.defaults
+		end
+	end,
 })
 
 return M
