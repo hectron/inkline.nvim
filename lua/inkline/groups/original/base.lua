@@ -37,10 +37,10 @@ function M.get(colors, opts)
     WinBar                  = { fg = colors.white, bold = false },
 
     -- Diff Highlights
-    DiffAdd                 = { bg = colors.dark_blue },
-    DiffChange              = { bg = colors.dark_magenta },
-    DiffDelete              = { fg = colors.blue, bg = colors.dark_cyan, bold = true },
-    DiffText                = { bg = colors.red, bold = true },
+    DiffAdd                 = { bg = colors.dark_green },
+    DiffChange              = { bg = colors.dark_teal },
+    DiffDelete              = { fg = colors.white, bg = colors.dark_red },
+    DiffText                = { bg = colors.dark_teal_2 },
 
     -- Links
     diffAdded               = { link = "String" },
@@ -51,8 +51,11 @@ function M.get(colors, opts)
 
     -- Gitsigns
     GitSignsAdd             = { fg = colors.green },
-    GitSignsChange          = { fg = colors.orange },
+    GitSignsAddInline       = { bg = colors.dark_green_2, fg = colors.white },
+    GitSignsChange          = { fg = colors.teal },
+    GitSignsChangeInline    = { bg = colors.dark_green_2, fg = colors.white },
     GitSignsDelete          = { fg = colors.red },
+    GitSignsDeleteInline    = { bg = colors.dark_red_2, fg = colors.white },
 
     -- Line Numbers
     LineNr                  = { fg = colors.dark_grey_5 },
