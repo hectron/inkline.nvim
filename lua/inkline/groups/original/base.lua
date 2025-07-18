@@ -109,6 +109,10 @@ function M.get(colors, opts)
     gitcommitUnmergedFile   = { fg = colors.red, bold = true },
     gitcommitDiscardedFile  = { fg = colors.red, bold = true },
     gitcommitSelectedFile   = { fg = colors.green, bold = true },
+
+    -- Flash
+    FlashMatch              = { fg = colors.light_blue, bg = colors.bg, bold = true },
+    FlashLabel              = { fg = colors.yellow, bg = colors.bg, bold = true },
   }
 
   return groups
