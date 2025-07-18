@@ -118,6 +118,12 @@ function M.get(colors, opts)
     gitcommitDiscardedFile  = { fg = colors.red, bold = true },
     gitcommitSelectedFile   = { fg = colors.green, bold = true },
 
+    -- Noice
+    NoiceCmdlineIcon =  { fg = colors.gold },
+    NoiceCmdlinePopupBorder =  { fg = colors.gold },
+    NoiceCmdlineIconSearch = { fg = colors.light_blue },
+    NoiceCmdlinePopupBorderSearch = { fg = colors.light_blue },
+
     -- Flash
     FlashMatch              = { fg = colors.light_blue, bg = colors.bg, bold = true },
     FlashLabel              = { fg = colors.yellow, bg = colors.bg, bold = true },
