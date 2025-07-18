@@ -16,7 +16,8 @@ function M.get(colors, opts)
     ["@lsp.type.method"]        = "@function.method",
     ["@lsp.type.namespace"]     = "@namespace",
     ["@lsp.type.parameter"]     = "@parameter",
-    ["@lsp.type.property"]      = "@property",       -- Maps to @property like main branch
+    ["@lsp.type.parameter.lua"] = "@variable.parameter.lua",
+    ["@lsp.type.property"]      = "@property",
     ["@lsp.type.struct"]        = "@type",
     ["@lsp.type.type"]          = "@type",
     ["@lsp.type.typeParameter"] = "@type.definition",
