@@ -126,12 +126,15 @@ function M.get(colors, opts)
     WhichKeyNormalNC           = { bg = colors.none },
     WhichKeyFloatNC            = { bg = colors.none },
 
+    -- Flash
+    FlashMatch                 = { fg = colors.light_blue, bg = colors.bg, bold = true },
+    FlashLabel                 = { fg = colors.yellow, bg = colors.bg, bold = true },
   }
-  if opts.dim_inactive_windows then
-    groups.WinBarNC = { fg = colors.dark_grey_6, bg = colors.bg_alt }
-  end
+	if opts.dim_inactive_windows then
+		groups.WinBarNC = { fg = colors.dark_grey_6, bg = colors.bg_alt }
+	end
 
-  return groups
+	return groups
 end
 
 return M
