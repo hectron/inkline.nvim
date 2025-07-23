@@ -3,8 +3,6 @@ local M = {}
 
 -- Define property colors for each variant
 M.property_colors = {
-  classic = function(c) return c.teal end,
-  modern = function(c) return c.purple end,
   retro = function(c) return c.pink end,
   cyberpunk = function(c) return c.magenta end,
 }

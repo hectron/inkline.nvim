@@ -43,8 +43,6 @@ end
 ---@type inkline.Style[]
 M.styles = {
   "original",
-  "classic",
-  "modern",
   "retro",
   "cyberpunk"
 }

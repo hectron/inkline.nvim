@@ -65,7 +65,7 @@ function M.cache.write(key, data)
 end
 
 function M.cache.clear()
-  for _, style in ipairs({ "original", "classic", "modern", "retro", "cyberpunk" }) do
+  for _, style in ipairs({ "original", "retro", "cyberpunk" }) do
     uv.fs_unlink(M.cache.file(style))
   end
 end
