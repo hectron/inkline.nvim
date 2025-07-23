@@ -21,7 +21,7 @@
 ---@field command? LualineModeColors
 local function get_inkline_colors()
   local config = require("inkline.config")
-  local current_style = (config.options and config.options.style) or "modern"
+  local current_style = (config.options and config.options.style) or "original"
   local colors, _ = require("inkline.colors").setup({ style = current_style })
   return colors
 end

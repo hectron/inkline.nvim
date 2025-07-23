@@ -30,10 +30,6 @@ function it(name, fn)
   end
 end
 
-function before_each(fn)
-  -- Store for potential future use
-end
-
 -- Load test files
 dofile("tests/colorscheme_spec.lua")
 dofile("tests/colors_spec.lua")
