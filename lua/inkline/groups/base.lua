@@ -34,10 +34,10 @@ function M.get(colors, opts)
     WinBar                     = { fg = colors.white, bold = false },
 
     -- Diff Highlights
-    DiffAdd                    = { fg = colors.green, bg = colors.dark_grey_1 },
-    DiffChange                 = { fg = colors.yellow, bg = colors.dark_grey_1 },
-    DiffDelete                 = { fg = colors.red, bg = colors.dark_grey_1, bold = true },
-    DiffText                   = { fg = colors.orange, bg = colors.dark_grey_2, bold = true },
+    DiffAdd                 = { bg = colors.dark_green },
+    DiffChange              = { bg = colors.dark_teal },
+    DiffDelete              = { fg = colors.white, bg = colors.dark_red },
+    DiffText                = { bg = colors.dark_teal_2 },
 
     -- Git commit message highlights
     diffAdded                  = { fg = colors.green, bold = true },
@@ -72,7 +72,12 @@ function M.get(colors, opts)
     Changed                    = { fg = colors.teal },
     Removed                    = { fg = colors.red },
     GitSignsCurrentLineBlame   = { fg = colors.dark_grey_5 },
-
+    GitSignsAdd                = { fg = colors.green },
+    GitSignsAddInline          = { bg = colors.dark_green_2, fg = colors.white },
+    GitSignsChange             = { fg = colors.teal },
+    GitSignsChangeInline       = { bg = colors.dark_green_2, fg = colors.white },
+    GitSignsDelete             = { fg = colors.red },
+    GitSignsDeleteInline       = { bg = colors.dark_red_2, fg = colors.white },
     -- Dropbar
     DropBarIconUISeparator     = { link = "DropBarIconKindSection", bold = false },
     DropBarIconUISeparatorNC   = { link = "DropBarIconKindSectionNC" },
