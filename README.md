@@ -35,17 +35,15 @@ Example installing via Lazy:
 
 inkline.nvim comes with multiple style variants:
 
-- `original` (default) - Faithful port of TextMate's vibrant-ink theme 
-- `modern` - Contemporary colors with purple properties and bright orange constants
-- `retro` - Softer early 2000s aesthetic with pink properties and warm yellow constants  
-- `classic` - Original vibrant-ink port with teal properties and yellow constants
+- `original` (default) - Faithful port of TextMate's vibrant-ink theme
+- `retro` - Softer early 2000s aesthetic with pink properties and warm yellow constants
 - `cyberpunk` - Electric neon colors with cyan functions and matrix green constants
 
 #### Via Lua Setup
 
 ```lua
 require("inkline").setup({
-  style = "original", -- "original", "modern", "retro", "classic", or "cyberpunk"
+  style = "original", -- "original", "retro", or "cyberpunk"
 })
 require("inkline").load()
 ```
@@ -77,7 +75,7 @@ require("inkline").setup({
   dim_inactive_windows = true,  -- Dim inactive windows
   transparent = false,          -- Transparent background
   purple_comments = false,      -- Use purple for comments
-  vibrant_strings = true,       -- Use vibrant green for strings  
+  vibrant_strings = true,       -- Use vibrant green for strings
   cache = true,                 -- Enable caching for better performance
   on_colors = function(colors) end,      -- Customize colors
   on_highlights = function(hl, c) end,   -- Customize highlights
