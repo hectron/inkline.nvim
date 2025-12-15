@@ -11,7 +11,13 @@ function M.setup(colors, opts)
 
   local inputs = {
     colors = colors,
-    options = opts,
+    options = {
+      style = opts.style,
+      transparent = opts.transparent,
+      dim_inactive_windows = opts.dim_inactive_windows,
+      vibrant_strings = opts.vibrant_strings,
+      purple_comments = opts.purple_comments,
+    },
   }
 
   if cache and cache.inputs and vim.deep_equal(cache.inputs, inputs) then
