@@ -34,7 +34,12 @@ T["links point at existing groups"] = function()
     for name, hl in pairs(groups) do
       local target = type(hl) == "string" and hl or hl.link
       if target and not name:find("^DropBar") then
-        local exists = groups[target] ~= nil or not vim.tbl_isempty(vim.api.nvim_get_hl(0, { name = target }))
+        -- Undefined dotted groups fall back to their parent (@type.definition -> @type)
+        local exists, name_ = false, target
+        while name_ and not exists do
+          exists = groups[name_] ~= nil or not vim.tbl_isempty(vim.api.nvim_get_hl(0, { name = name_ }))
+          name_ = name_:match("^(@.+)%.[^.]+$")
+        end
         eq({ style, name, target, exists }, { style, name, target, true })
       end
     end

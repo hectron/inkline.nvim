@@ -8,6 +8,7 @@
 @character.printf fg=#4ef2f2
 @character.special fg=#4ef2f2
 @comment fg=#6b6f78 italic
+@comment.documentation fg=#6b6f78 italic
 @comment.error fg=#e74c3c
 @comment.hint fg=#95a5a6
 @comment.info fg=#3498db
@@ -30,6 +31,7 @@
 @function.method.call fg=#ffbb00
 @keyword fg=#e65c00
 @keyword.conditional fg=#ff4f3f
+@keyword.conditional.ternary fg=#ff4f3f
 @keyword.coroutine fg=#e65c00
 @keyword.debug fg=#4ef2f2
 @keyword.directive fg=#e0e2ea
@@ -37,11 +39,13 @@
 @keyword.exception fg=#ff4f3f
 @keyword.function fg=#ff6600
 @keyword.import fg=#fcd63a
+@keyword.modifier fg=#e65c00
 @keyword.operator fg=#beffeb
 @keyword.operator.lua fg=#ff4f3f
 @keyword.repeat fg=#ff4f3f
 @keyword.return fg=#e65c00
 @keyword.storage fg=#44fbbe
+@keyword.type fg=#e65c00
 @label fg=#ff4f3f
 @lsp.mod.deprecated sp=#ffc0b9 strikethrough
 @lsp.type.class fg=#44fbbe
@@ -72,13 +76,19 @@
 @markup.environment fg=#e0e2ea
 @markup.environment.name fg=#44fbbe
 @markup.heading fg=#e0e2ea bold
+@markup.heading.1 fg=#e0e2ea bold
 @markup.heading.1.delimiter.vimdoc fg=#000000 bg=#000000 sp=#ffffff nocombine underdouble
 @markup.heading.1.markdown fg=#ff6b6b bold
+@markup.heading.2 fg=#e0e2ea bold
 @markup.heading.2.delimiter.vimdoc fg=#000000 bg=#000000 sp=#ffffff nocombine underline
 @markup.heading.2.markdown fg=#ff8c42 bold
+@markup.heading.3 fg=#e0e2ea bold
 @markup.heading.3.markdown fg=#ffd43b bold
+@markup.heading.4 fg=#e0e2ea bold
 @markup.heading.4.markdown fg=#51cf66 bold
+@markup.heading.5 fg=#e0e2ea bold
 @markup.heading.5.markdown fg=#4dabf7 bold
+@markup.heading.6 fg=#e0e2ea bold
 @markup.heading.6.markdown fg=#e080ff bold
 @markup.italic italic
 @markup.link underline
@@ -91,6 +101,7 @@
 @markup.list.unchecked fg=#0000ff
 @markup.math fg=#4ef2f2
 @markup.raw fg=#66ff00
+@markup.raw.block fg=#66ff00
 @markup.strikethrough strikethrough
 @markup.strong bold
 @markup.underline underline
@@ -112,6 +123,7 @@
 @string.escape fg=#e080ff
 @string.regexp fg=#5ef1ff
 @string.special fg=#4ef2f2
+@string.special.path fg=#4ef2f2
 @string.special.symbol fg=#44fbbe
 @string.special.url fg=#ff4f3f
 @tag fg=#ff4f3f
@@ -124,6 +136,7 @@
 @type.qualifier fg=#e65c00
 @variable fg=#eceef4
 @variable.builtin fg=#ff779b
+@variable.member fg=#eceef4
 @variable.parameter fg=#44fbbe
 @variable.parameter.builtin fg=#69fccb
 @variable.parameter.lua fg=#ff779b

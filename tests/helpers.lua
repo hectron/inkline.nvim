@@ -31,7 +31,20 @@ end
 ---Effective definition of every highlight group, one sorted line per group.
 function H.dump_highlights(child)
   return child.lua_get([[(function()
-    local names = vim.tbl_keys(vim.api.nvim_get_hl(0, {}))
+    local seen = {}
+    for name in pairs(vim.api.nvim_get_hl(0, {})) do
+      seen[name] = true
+    end
+    -- Captures documented in :h treesitter-highlight-groups resolve through parent fallback
+    -- even when inkline does not define them, so include them explicitly.
+    local doc = vim.fn.readfile(vim.env.VIMRUNTIME .. "/doc/treesitter.txt")
+    for _, line in ipairs(doc) do
+      local capture = line:match("^(@[%w_.]+)%s")
+      if capture then
+        seen[capture] = true
+      end
+    end
+    local names = vim.tbl_keys(seen)
     table.sort(names)
     local lines = {}
     for _, name in ipairs(names) do

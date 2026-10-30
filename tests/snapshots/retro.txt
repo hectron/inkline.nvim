@@ -8,6 +8,7 @@
 @character.printf fg=#20b2aa
 @character.special fg=#20b2aa
 @comment fg=#6b6f78 italic
+@comment.documentation fg=#6b6f78 italic
 @comment.error fg=#e74c3c
 @comment.gitcommit fg=#6b6f78 italic
 @comment.hint fg=#95a5a6
@@ -31,6 +32,7 @@
 @function.method.call fg=#5ea1ff
 @keyword fg=#e74c3c
 @keyword.conditional fg=#e74c3c
+@keyword.conditional.ternary fg=#e74c3c
 @keyword.coroutine fg=#e74c3c
 @keyword.debug fg=#e74c3c
 @keyword.directive fg=#e74c3c
@@ -39,11 +41,13 @@
 @keyword.function fg=#e74c3c
 @keyword.gitcommit fg=#e74c3c
 @keyword.import fg=#fcd63a
+@keyword.modifier fg=#e74c3c
 @keyword.operator fg=#a3e8db
 @keyword.operator.lua fg=#ff4f3f
 @keyword.repeat fg=#ff4f3f
 @keyword.return fg=#e74c3c
 @keyword.storage fg=#00d084
+@keyword.type fg=#e74c3c
 @label fg=#5ea1ff
 @lsp.mod.deprecated sp=#ffc0b9 strikethrough
 @lsp.type.boolean fg=#ffdd00
@@ -102,13 +106,19 @@
 @markup.environment fg=#e0e2ea
 @markup.environment.name fg=#00d084
 @markup.heading fg=#ff6b6b bold
+@markup.heading.1 fg=#ff6b6b bold
 @markup.heading.1.delimiter.vimdoc fg=#000000 bg=#000000 sp=#ffffff nocombine underdouble
 @markup.heading.1.markdown fg=#ff6b6b bold
+@markup.heading.2 fg=#ff6b6b bold
 @markup.heading.2.delimiter.vimdoc fg=#000000 bg=#000000 sp=#ffffff nocombine underline
 @markup.heading.2.markdown fg=#ff8c42 bold
+@markup.heading.3 fg=#ff6b6b bold
 @markup.heading.3.markdown fg=#ffd43b bold
+@markup.heading.4 fg=#ff6b6b bold
 @markup.heading.4.markdown fg=#51cf66 bold
+@markup.heading.5 fg=#ff6b6b bold
 @markup.heading.5.markdown fg=#4dabf7 bold
+@markup.heading.6 fg=#ff6b6b bold
 @markup.heading.6.markdown fg=#e080ff bold
 @markup.heading.gitcommit fg=#5ea1ff bold underline
 @markup.italic italic
@@ -122,6 +132,7 @@
 @markup.list.unchecked fg=#5ea1ff
 @markup.math fg=#20b2aa
 @markup.raw fg=#66ff00
+@markup.raw.block fg=#66ff00
 @markup.raw.markdown_inline fg=#ffbd5e bg=#3c4048
 @markup.strikethrough strikethrough
 @markup.strong bold
@@ -144,6 +155,8 @@
 @string.gitcommit fg=#66ff00
 @string.regexp fg=#00ffff
 @string.special fg=#20b2aa
+@string.special.path fg=#20b2aa
+@string.special.symbol fg=#20b2aa
 @string.special.url underline
 @tag fg=#e74c3c
 @tag.attribute fg=#e080ff
@@ -156,6 +169,7 @@
 @type.ruby fg=#e080ff
 @variable fg=#ffffff
 @variable.builtin fg=#ff779b italic
+@variable.member fg=#ffffff
 @variable.parameter fg=#00d084
 @variable.parameter.builtin fg=#33d99d
 @variable.parameter.lua fg=#ff779b
