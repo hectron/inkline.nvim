@@ -16,7 +16,7 @@ inkline is a dark, early-2000s colorscheme for [Neovim][neovim], ported from Tex
 ## Requirements
 
 - [Neovim][neovim] 0.11 or newer
-- `termguicolors` enabled (Neovim turns it on automatically in terminals that support true color)
+- A terminal with true color support (inkline turns on `termguicolors`)
 
 ## Installation
 
@@ -63,12 +63,12 @@ These are the defaults:
 ```lua
 require("inkline").setup({
   style = "original",          -- "original", "retro", or "cyberpunk"
-  dim_inactive_windows = true, -- darker background in inactive windows
+  dim_inactive_windows = true, -- darker inactive windows; set explicitly to also dim when Neovim loses focus
   transparent = false,         -- no editor background
   purple_comments = false,     -- purple comments instead of gray
   vibrant_strings = true,      -- lime strings; false for a softer green
   terminal_colors = true,      -- set terminal_color_0..15
-  plugins = { default = true }, -- plugin highlights; e.g. { default = true, flash = false }
+  plugins = { default = true }, -- plugin highlights; e.g. { flash = false }, or false for none
   on_colors = nil,             -- fun(colors): colors
   on_highlights = nil,         -- fun(highlights, colors): highlights
 })

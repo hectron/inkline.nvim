@@ -17,7 +17,7 @@ CONTENTS                                                    *inkline-contents*
 
 inkline is a dark colorscheme with Tree-sitter, LSP semantic token,
 diagnostic, terminal, and plugin highlights. It requires Neovim 0.11 or newer
-with 'termguicolors' enabled.
+and turns on 'termguicolors' when loaded.
 
 Load it like any colorscheme: >vim
     colorscheme inkline
@@ -63,7 +63,9 @@ style                                                  *inkline-option-style*
 
 dim_inactive_windows                    *inkline-option-dim_inactive_windows*
     Give inactive windows a darker background through |hl-NormalNC| and
-    |hl-WinBarNC|.
+    |hl-WinBarNC|. When passed to |inkline.setup()| explicitly as `true`, the
+    whole editor also dims while Neovim is unfocused, for example in an
+    inactive tmux pane.
 
 transparent                                      *inkline-option-transparent*
     Leave the editor background unset so the terminal background shows.
@@ -79,7 +81,8 @@ terminal_colors                              *inkline-option-terminal_colors*
 
 plugins                                              *inkline-option-plugins*
     Turn plugin highlights on or off. `default` applies to every plugin, and
-    a plugin name overrides it. See |inkline-plugins|. >lua
+    a plugin name overrides it. `true` or `false` sets `default`. See
+    |inkline-plugins|. >lua
         plugins = { default = true, flash = false }
         plugins = { default = false, gitsigns = true }
 <
@@ -127,11 +130,15 @@ so overriding `@function` also changes `@function.call` and
 Common palette keys: `bg`, `bg_alt`, `bg_highlight`, `bg_visual`, `fg`,
 `white`, `black`, `red`, `orange`, `yellow`, `gold`, `green`, `teal`, `cyan`,
 `blue`, `light_blue`, `purple`, `magenta`, `pink`, and the grays
-`dark_grey_1` through `dark_grey_6`. Computed keys: `string_color`,
-`comment`, `function_color`, `constant_color`, and (retro, cyberpunk)
-`property`. Computed keys are set before |inkline-option-on_colors| runs, so
-set them directly (for example `c.comment`) rather than the color they came
-from. Inspect a palette with: >lua
+`dark_grey_1` through `dark_grey_6`. Each style also sets `function_color`
+and `constant_color`.
+
+Computed keys come from other colors and options: `string_color` (`green`, or
+a softer green with `vibrant_strings = false`), `comment` (`dark_grey_5`, or
+`purple` with `purple_comments`), and `property` (`pink` in retro, `magenta`
+in cyberpunk). Changing the source color in |inkline-option-on_colors| updates
+the computed key; setting the computed key directly takes precedence.
+Inspect a palette with: >lua
     :lua =require("inkline.colors").setup({ style = "retro" })
 <
 ==============================================================================
