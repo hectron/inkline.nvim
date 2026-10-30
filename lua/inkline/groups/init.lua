@@ -1,5 +1,9 @@
+---@alias inkline.Highlight vim.api.keyset.highlight|string A highlight definition, or the name of a group to link to
+---@alias inkline.Highlights table<string, inkline.Highlight>
+
 local M = {}
 
+---@type string[]
 M.plugins = {
   "cmp",
   "copilot",
@@ -15,7 +19,8 @@ M.plugins = {
 ---@param opts inkline.ResolvedConfig
 ---@return string[] module names under inkline.groups
 function M.modules(opts)
-  local modules = { "editor", "syntax", require("inkline.colors." .. opts.style).syntax }
+  local style = require("inkline.colors." .. opts.style) ---@type inkline.StyleModule
+  local modules = { "editor", "syntax", style.syntax }
   for _, plugin in ipairs(M.plugins) do
     local enabled = opts.plugins[plugin]
     if enabled == nil then
@@ -28,10 +33,11 @@ function M.modules(opts)
   return modules
 end
 
----@param c table
+---@param c inkline.Palette
 ---@param opts inkline.ResolvedConfig
+---@return inkline.Highlights
 function M.setup(c, opts)
-  local groups = {}
+  local groups = {} ---@type inkline.Highlights
   for _, name in ipairs(M.modules(opts)) do
     for group, hl in pairs(require("inkline.groups." .. name).get(c, opts)) do
       groups[group] = hl

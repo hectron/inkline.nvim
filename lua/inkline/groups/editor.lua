@@ -1,7 +1,8 @@
 local M = {}
 
----@param c table
+---@param c inkline.Palette
 ---@param opts inkline.ResolvedConfig
+---@return inkline.Highlights
 function M.get(c, opts)
   local float_bg = opts.transparent and c.none or c.bg
 

@@ -23,7 +23,7 @@ function M.check()
   if ok then
     health.ok("Options are valid")
   else
-    health.error(err)
+    health.error(err or "Invalid options")
   end
 
   for key in pairs(opts) do

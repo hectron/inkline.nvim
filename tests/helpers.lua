@@ -1,7 +1,11 @@
 local H = {}
 
+---@class inkline.TestChild : MiniTest.child
+---@field setup fun()
+
+---@return inkline.TestChild
 function H.new_child()
-  local child = MiniTest.new_child_neovim()
+  local child = MiniTest.new_child_neovim() --[[@as inkline.TestChild]]
   function child.setup()
     child.restart({ "-u", "tests/minimal_init.lua" })
   end
@@ -102,7 +106,9 @@ function H.expect_snapshot(lines, name)
   end
 
   if expected ~= actual then
-    error(("snapshot %s differs (run `make snapshots` to accept):\n%s"):format(path, vim.diff(expected, actual)), 0)
+    ---@diagnostic disable-next-line: deprecated
+    local diff = vim.text and vim.text.diff or vim.diff
+    error(("snapshot %s differs (run `make snapshots` to accept):\n%s"):format(path, diff(expected, actual)), 0)
   end
 end
 

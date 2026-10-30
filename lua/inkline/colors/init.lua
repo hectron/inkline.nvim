@@ -1,11 +1,18 @@
+---@class inkline.StyleModule
+---@field colors inkline.Palette
+---@field syntax "vibrant_ink"|"modern" Syntax group set under inkline.groups
+
 local M = {}
 
+---Palette for the configured style with options and `on_colors` applied.
 ---@param opts? inkline.Config
+---@return inkline.Palette colors, inkline.ResolvedConfig opts
 function M.setup(opts)
   opts = require("inkline.config").extend(opts)
 
   -- Get base colors for the selected style
-  local colors = vim.deepcopy(require("inkline.colors." .. opts.style).colors)
+  local style = require("inkline.colors." .. opts.style) ---@type inkline.StyleModule
+  local colors = vim.deepcopy(style.colors)
 
   -- Apply transparency if enabled
   if opts.transparent then
@@ -24,7 +31,7 @@ function M.setup(opts)
 end
 
 ---Terminal colors 0-15 for :terminal buffers.
----@param c table palette from setup()
+---@param c inkline.Palette
 ---@return string[]
 function M.terminal(c)
   local Util = require("inkline.util")

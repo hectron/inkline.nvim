@@ -13,7 +13,10 @@ function M.load(opts)
   vim.g.colors_name = "inkline-" .. opts.style
 
   for group, hl in pairs(highlights) do
-    vim.api.nvim_set_hl(0, group, type(hl) == "string" and { link = hl } or hl)
+    if type(hl) == "string" then
+      hl = { link = hl }
+    end
+    vim.api.nvim_set_hl(0, group, hl)
   end
 
   if opts.terminal_colors then

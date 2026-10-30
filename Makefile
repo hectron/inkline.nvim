@@ -15,9 +15,11 @@ test: deps
 snapshots: deps
 	UPDATE_SNAPSHOTS=1 $(NVIM) --headless --noplugin -u tests/minimal_init.lua -c "lua MiniTest.run()"
 
-lint:
-	stylua --check lua tests colors
-	lua-language-server --check . --checklevel=Warning --configpath=.luarc.json
+VIMRUNTIME := $(shell $(NVIM) --clean --headless -c 'lua io.stdout:write(vim.env.VIMRUNTIME)' -c q)
+
+lint: deps
+	stylua --check lua tests colors scripts
+	VIMRUNTIME="$(VIMRUNTIME)" lua-language-server --check . --checklevel=Information --configpath=$(CURDIR)/.luarc.json
 
 deps: $(DEPS)/mini.nvim
 

@@ -2,6 +2,7 @@ local M = {}
 
 ---Lualine theme built from a style's palette.
 ---@param style? inkline.Style defaults to the style from setup()
+---@return table<string, table<string, {fg: string, bg: string, gui?: string}>>
 function M.theme(style)
   local colors = require("inkline.colors").setup(style and { style = style } or nil)
 

@@ -1,6 +1,7 @@
 local M = {}
 
----@param c table
+---@param c inkline.Palette
+---@return inkline.Highlights
 function M.get(c)
   -- stylua: ignore
   return {

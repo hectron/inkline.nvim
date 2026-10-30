@@ -11,8 +11,8 @@ local M = {}
 ---@field terminal_colors? boolean
 ---@field plugins? table<string, boolean> `default` sets every plugin; plugin names override it
 ---@field cache? boolean Deprecated and ignored
----@field on_colors? fun(colors: table): table?
----@field on_highlights? fun(highlights: table, colors: table): table?
+---@field on_colors? fun(colors: inkline.Palette): inkline.Palette?
+---@field on_highlights? fun(highlights: inkline.Highlights, colors: inkline.Palette): inkline.Highlights?
 
 ---@class inkline.ResolvedConfig : inkline.Config
 ---@field style inkline.Style

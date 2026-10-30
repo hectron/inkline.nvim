@@ -1,7 +1,8 @@
 {
   "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
   "runtime.version": "LuaJIT",
-  "diagnostics.globals": ["vim", "MiniTest"],
+  "workspace.library": ["$VIMRUNTIME/lua", ".tests/deps/mini.nvim/lua"],
   "workspace.checkThirdParty": false,
-  "workspace.ignoreDir": [".tests"]
+  "workspace.ignoreDir": [".tests"],
+  "diagnostics.globals": ["vim", "MiniTest"]
 }

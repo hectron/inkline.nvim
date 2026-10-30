@@ -2,6 +2,11 @@
 local M = {}
 
 ---@class inkline.Palette
+---@field string_color string String color picked by `vibrant_strings`
+---@field comment string Comment color picked by `purple_comments`
+---@field property? string Property color for styles using the modern syntax set
+---@field function_color string
+---@field constant_color string
 -- stylua: ignore
 M.base = {
   none           = "NONE",

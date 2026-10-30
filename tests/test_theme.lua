@@ -10,6 +10,12 @@ local T = MiniTest.new_set({
   },
 })
 
+---@param group string
+---@return string?
+local function parent(group)
+  return group:match("^(@.+)%.[^.]+$")
+end
+
 local function highlights(style)
   return require("inkline.theme").setup({ style = style, cache = false })
 end
@@ -20,7 +26,10 @@ T["every style colors the core captures"] = function()
   for _, style in ipairs(styles) do
     vim.cmd("hi clear")
     for name, hl in pairs(highlights(style)) do
-      vim.api.nvim_set_hl(0, name, type(hl) == "string" and { link = hl } or hl)
+      if type(hl) == "string" then
+        hl = { link = hl }
+      end
+      vim.api.nvim_set_hl(0, name, hl)
     end
     for _, capture in ipairs(captures) do
       local fg = vim.api.nvim_get_hl(0, { name = capture, link = false }).fg
@@ -35,14 +44,15 @@ T["links point at existing groups"] = function()
     for name, hl in pairs(groups) do
       local target = hl --[[@as string?]]
       if type(hl) == "table" then
-        target = hl.link
+        target = hl.link --[[@as string?]]
       end
       if target and not name:find("^DropBar") then
         -- Undefined dotted groups fall back to their parent (@type.definition -> @type)
-        local exists, name_ = false, target
-        while name_ and not exists do
-          exists = groups[name_] ~= nil or not vim.tbl_isempty(vim.api.nvim_get_hl(0, { name = name_ }))
-          name_ = name_:match("^(@.+)%.[^.]+$")
+        local exists = false
+        local candidate = target ---@type string?
+        while candidate and not exists do
+          exists = groups[candidate] ~= nil or not vim.tbl_isempty(vim.api.nvim_get_hl(0, { name = candidate }))
+          candidate = parent(candidate)
         end
         eq({ style, name, target, exists }, { style, name, target, true })
       end
