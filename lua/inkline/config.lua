@@ -9,6 +9,7 @@ local M = {}
 ---@field purple_comments? boolean
 ---@field vibrant_strings? boolean
 ---@field terminal_colors? boolean
+---@field plugins? table<string, boolean> `default` sets every plugin; plugin names override it
 ---@field cache? boolean Deprecated and ignored
 ---@field on_colors? fun(colors: table): table?
 ---@field on_highlights? fun(highlights: table, colors: table): table?
@@ -20,6 +21,7 @@ local M = {}
 ---@field purple_comments boolean
 ---@field vibrant_strings boolean
 ---@field terminal_colors boolean
+---@field plugins table<string, boolean>
 
 ---@type inkline.Style[]
 M.styles = { "original", "retro", "cyberpunk" }
@@ -32,6 +34,7 @@ M.defaults = {
   purple_comments = false,
   vibrant_strings = true,
   terminal_colors = true,
+  plugins = { default = true },
   on_colors = nil,
   on_highlights = nil,
 }
@@ -49,6 +52,7 @@ function M.validate(opts)
     vim.validate("purple_comments", opts.purple_comments, "boolean")
     vim.validate("vibrant_strings", opts.vibrant_strings, "boolean")
     vim.validate("terminal_colors", opts.terminal_colors, "boolean")
+    vim.validate("plugins", opts.plugins, "table")
     vim.validate("on_colors", opts.on_colors, "function", true)
     vim.validate("on_highlights", opts.on_highlights, "function", true)
   end)

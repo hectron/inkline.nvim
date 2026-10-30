@@ -46,4 +46,29 @@ T["links point at existing groups"] = function()
   end
 end
 
+T["plugins"] = MiniTest.new_set()
+
+T["plugins"]["are all enabled by default"] = function()
+  local groups = highlights("original")
+  eq(groups.FlashLabel ~= nil and groups.WhichKey ~= nil, true)
+end
+
+T["plugins"]["can be disabled by name"] = function()
+  local groups = require("inkline.theme").setup({ plugins = { flash = false } })
+  eq(groups.FlashLabel, nil)
+  eq(groups.WhichKey ~= nil, true)
+end
+
+T["plugins"]["default = false enables only named plugins"] = function()
+  local groups = require("inkline.theme").setup({ plugins = { default = false, flash = true } })
+  eq(groups.FlashLabel ~= nil, true)
+  eq(groups.WhichKey, nil)
+end
+
+T["plugins"]["every listed plugin has a module"] = function()
+  for _, plugin in ipairs(require("inkline.groups").plugins) do
+    eq(type(require("inkline.groups.plugins." .. plugin).get), "function")
+  end
+end
+
 return T
