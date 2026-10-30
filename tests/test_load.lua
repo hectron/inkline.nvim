@@ -138,4 +138,18 @@ T["options"]["on_highlights overrides groups"] = function()
   eq(H.hl(child, "Comment", "fg"), "#123456")
 end
 
+T["lualine"] = MiniTest.new_set()
+
+T["lualine"]["named themes use their own style"] = function()
+  H.load(child, "{ style = 'original' }")
+  local bg = "require('lualine.themes.inkline-%s').normal.a.bg"
+  eq(child.lua_get(bg:format("retro")), child.lua_get("require('inkline.colors').setup({ style = 'retro' }).function_color"))
+  eq(child.lua_get(bg:format("cyberpunk")), child.lua_get("require('inkline.colors').setup({ style = 'cyberpunk' }).function_color"))
+end
+
+T["lualine"]["inkline theme follows setup() style"] = function()
+  H.load(child, "{ style = 'retro' }")
+  eq(child.lua_get("require('lualine.themes.inkline').normal.a.bg"), "#5ea1ff")
+end
+
 return T
