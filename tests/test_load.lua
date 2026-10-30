@@ -44,10 +44,10 @@ T["colorscheme"]["sets background to dark"] = function()
   eq(child.o.background, "dark")
 end
 
-T["colorscheme"]["leaves termguicolors alone"] = function()
+T["colorscheme"]["turns on termguicolors as in 2.1"] = function()
   child.o.termguicolors = false
   H.load(child, "{}")
-  eq(child.o.termguicolors, false)
+  eq(child.o.termguicolors, true)
 end
 
 T["colorscheme"]["sets terminal colors"] = function()
@@ -93,6 +93,56 @@ T["setup"]["cache option writes nothing"] = function()
   child.lua("require('inkline').clear_cache()")
   H.load(child, "{ cache = true }")
   eq(child.lua_get("vim.fn.glob(vim.fn.stdpath('cache') .. '/inkline-*', false, true)"), {})
+end
+
+T["focus dimming"] = MiniTest.new_set()
+
+local bg = function(group)
+  return H.hl(child, group, "bg")
+end
+
+T["focus dimming"]["dims Normal and WinBar while Neovim is unfocused"] = function()
+  H.load(child, "{ dim_inactive_windows = true }")
+  local normal, alt = bg("Normal"), child.lua_get("require('inkline.colors').setup().bg_alt"):lower()
+  child.api.nvim_exec_autocmds("FocusLost", {})
+  eq({ bg("Normal"), bg("WinBar") }, { alt, alt })
+  child.api.nvim_exec_autocmds("FocusGained", {})
+  eq(bg("Normal"), normal)
+end
+
+T["focus dimming"]["keeps on_highlights overrides when restoring"] = function()
+  H.load(
+    child,
+    "{ dim_inactive_windows = true, on_highlights = function(hl) hl.Normal = { fg = '#123456', bg = '#010101' } end }"
+  )
+  child.api.nvim_exec_autocmds("FocusLost", {})
+  child.api.nvim_exec_autocmds("FocusGained", {})
+  eq({ H.hl(child, "Normal", "fg"), bg("Normal") }, { "#123456", "#010101" })
+end
+
+T["focus dimming"]["stops after switching to another colorscheme"] = function()
+  H.load(child, "{ dim_inactive_windows = true }")
+  child.cmd("colorscheme default")
+  local normal = bg("Normal")
+  child.api.nvim_exec_autocmds("FocusLost", {})
+  eq(bg("Normal"), normal)
+end
+
+T["focus dimming"]["does not pile up autocmds across loads"] = function()
+  H.load(child, "{ dim_inactive_windows = true }")
+  child.cmd("colorscheme inkline")
+  child.cmd("colorscheme inkline-retro")
+  eq(child.lua_get("#vim.api.nvim_get_autocmds({ event = 'FocusLost' })"), 1)
+end
+
+T["focus dimming"]["needs dim_inactive_windows = true set explicitly, as in 2.1"] = function()
+  H.load(child, "{}")
+  eq(child.lua_get("#vim.api.nvim_get_autocmds({ event = { 'FocusLost', 'FocusGained' } })"), 0)
+end
+
+T["focus dimming"]["is off when dim_inactive_windows = false"] = function()
+  H.load(child, "{ dim_inactive_windows = false }")
+  eq(child.lua_get("#vim.api.nvim_get_autocmds({ event = { 'FocusLost', 'FocusGained' } })"), 0)
 end
 
 T["switch_style"] = MiniTest.new_set()

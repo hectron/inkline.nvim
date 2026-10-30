@@ -42,6 +42,9 @@ M.defaults = {
 ---@type inkline.ResolvedConfig
 M.options = vim.deepcopy(M.defaults)
 
+---Whether setup() was given `dim_inactive_windows = true` explicitly, which also dims on focus loss
+M.dim_on_focus_lost = false
+
 ---@param opts table
 ---@return boolean ok, string? err
 function M.validate(opts)
@@ -63,6 +66,7 @@ end
 ---@param options? inkline.Config
 function M.setup(options)
   M.options = vim.tbl_deep_extend("force", {}, M.defaults, options or {})
+  M.dim_on_focus_lost = options ~= nil and options.dim_inactive_windows == true
   local ok, err = M.validate(M.options)
   if not ok then
     vim.notify("inkline.nvim: " .. err, vim.log.levels.ERROR)
