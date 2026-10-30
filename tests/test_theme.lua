@@ -79,6 +79,12 @@ T["plugins"]["default = false enables only named plugins"] = function()
   eq(groups.WhichKey, nil)
 end
 
+T["plugins"]["accept a boolean shorthand"] = function()
+  local groups = require("inkline.theme").setup({ plugins = false })
+  eq(groups.FlashLabel, nil)
+  eq(groups.Normal ~= nil, true)
+end
+
 T["plugins"]["every listed plugin has a module"] = function()
   for _, plugin in ipairs(require("inkline.groups").plugins) do
     eq(type(require("inkline.groups.plugins." .. plugin).get), "function")

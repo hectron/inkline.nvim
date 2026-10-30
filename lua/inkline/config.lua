@@ -9,7 +9,7 @@ local M = {}
 ---@field purple_comments? boolean
 ---@field vibrant_strings? boolean
 ---@field terminal_colors? boolean
----@field plugins? table<string, boolean> `default` sets every plugin; plugin names override it
+---@field plugins? boolean|table<string, boolean> `default` sets every plugin; plugin names override it. A boolean sets `default`.
 ---@field cache? boolean Deprecated and ignored
 ---@field on_colors? fun(colors: inkline.Palette): inkline.Palette?
 ---@field on_highlights? fun(highlights: inkline.Highlights, colors: inkline.Palette): inkline.Highlights?
@@ -55,7 +55,7 @@ function M.validate(opts)
     vim.validate("purple_comments", opts.purple_comments, "boolean")
     vim.validate("vibrant_strings", opts.vibrant_strings, "boolean")
     vim.validate("terminal_colors", opts.terminal_colors, "boolean")
-    vim.validate("plugins", opts.plugins, "table")
+    vim.validate("plugins", opts.plugins, { "table", "boolean" })
     vim.validate("on_colors", opts.on_colors, "function", true)
     vim.validate("on_highlights", opts.on_highlights, "function", true)
   end)
@@ -78,6 +78,9 @@ end
 ---@return inkline.ResolvedConfig
 function M.extend(options)
   local opts = vim.tbl_deep_extend("force", {}, M.options, options or {})
+  if type(opts.plugins) == "boolean" then
+    opts.plugins = { default = opts.plugins }
+  end
   if not vim.tbl_contains(M.styles, opts.style) then
     vim.notify(
       ('inkline.nvim: unknown style %q, using "original". Available: %s'):format(
