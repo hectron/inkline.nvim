@@ -13,6 +13,9 @@ local cases = {
   original = "{ style = 'original' }",
   retro = "{ style = 'retro' }",
   cyberpunk = "{ style = 'cyberpunk' }",
+  ["original-options"] = "{ purple_comments = true, vibrant_strings = false, transparent = true, dim_inactive_windows = false }",
+  ["retro-on_colors"] = "{ style = 'retro', on_colors = function(c) c.pink = '#111111'; c.green = '#222222' end }",
+  ["cyberpunk-no-plugins"] = "{ style = 'cyberpunk', plugins = false, terminal_colors = false }",
 }
 
 for name, opts in pairs(cases) do

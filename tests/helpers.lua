@@ -102,6 +102,9 @@ function H.expect_snapshot(lines, name)
   local expected = table.concat(vim.fn.readfile(path), "\n") .. "\n"
   local recorded = expected:match("^# nvim (%S+)")
   if recorded ~= nvim_version() then
+    if vim.env.INKLINE_REQUIRE_SNAPSHOTS == "1" then
+      error(("snapshot %s was recorded on nvim %s, running %s"):format(path, recorded, nvim_version()), 0)
+    end
     MiniTest.skip(("snapshot %s was recorded on nvim %s"):format(path, recorded))
   end
 

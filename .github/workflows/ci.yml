@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [v0.11.7, stable, nightly]
+        version: [v0.11.7, v0.12.5, stable, nightly]
     steps:
       - uses: actions/checkout@v4
       - uses: rhysd/action-setup-vim@v1
@@ -20,6 +20,9 @@ jobs:
           neovim: true
           version: ${{ matrix.version }}
       - run: make test
+        env:
+          # Snapshots are recorded on 0.12; this job fails instead of skipping them
+          INKLINE_REQUIRE_SNAPSHOTS: ${{ matrix.version == 'v0.12.5' && '1' || '' }}
 
   format:
     runs-on: ubuntu-latest
