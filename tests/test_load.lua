@@ -23,12 +23,15 @@ T["colorscheme"]["loads configured style"] = MiniTest.new_set({ parametrize = { 
   end,
 })
 
-T["colorscheme"]["loads style entrypoint"] = MiniTest.new_set({ parametrize = { { "original" }, { "retro" }, { "cyberpunk" } } }, {
-  test = function(style)
-    H.load(child, "{}", "inkline-" .. style)
-    eq(child.g.colors_name, "inkline-" .. style)
-  end,
-})
+T["colorscheme"]["loads style entrypoint"] = MiniTest.new_set(
+  { parametrize = { { "original" }, { "retro" }, { "cyberpunk" } } },
+  {
+    test = function(style)
+      H.load(child, "{}", "inkline-" .. style)
+      eq(child.g.colors_name, "inkline-" .. style)
+    end,
+  }
+)
 
 T["colorscheme"]["works without setup()"] = function()
   child.cmd("colorscheme inkline")
@@ -125,13 +128,16 @@ T["options"]["purple_comments colors comments"] = function()
   eq(H.hl(child, "Comment", "fg"), "#a85cf5")
 end
 
-T["options"]["vibrant_strings = false softens String"] = MiniTest.new_set({ parametrize = { { "original" }, { "retro" } } }, {
-  test = function(style)
-    H.load(child, ("{ style = %q, vibrant_strings = false }"):format(style))
-    eq(H.hl(child, "String", "fg"), "#27ae60")
-    eq(H.hl(child, "@string", "fg"), "#27ae60")
-  end,
-})
+T["options"]["vibrant_strings = false softens String"] = MiniTest.new_set(
+  { parametrize = { { "original" }, { "retro" } } },
+  {
+    test = function(style)
+      H.load(child, ("{ style = %q, vibrant_strings = false }"):format(style))
+      eq(H.hl(child, "String", "fg"), "#27ae60")
+      eq(H.hl(child, "@string", "fg"), "#27ae60")
+    end,
+  }
+)
 
 T["options"]["on_highlights overrides groups"] = function()
   H.load(child, "{ on_highlights = function(hl) hl.Comment = { fg = '#123456' } return hl end }")
@@ -143,8 +149,14 @@ T["lualine"] = MiniTest.new_set()
 T["lualine"]["named themes use their own style"] = function()
   H.load(child, "{ style = 'original' }")
   local bg = "require('lualine.themes.inkline-%s').normal.a.bg"
-  eq(child.lua_get(bg:format("retro")), child.lua_get("require('inkline.colors').setup({ style = 'retro' }).function_color"))
-  eq(child.lua_get(bg:format("cyberpunk")), child.lua_get("require('inkline.colors').setup({ style = 'cyberpunk' }).function_color"))
+  eq(
+    child.lua_get(bg:format("retro")),
+    child.lua_get("require('inkline.colors').setup({ style = 'retro' }).function_color")
+  )
+  eq(
+    child.lua_get(bg:format("cyberpunk")),
+    child.lua_get("require('inkline.colors').setup({ style = 'cyberpunk' }).function_color")
+  )
 end
 
 T["lualine"]["inkline theme follows setup() style"] = function()

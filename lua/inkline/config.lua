@@ -76,7 +76,7 @@ function M.extend(options)
   local opts = vim.tbl_deep_extend("force", {}, M.options, options or {})
   if not vim.tbl_contains(M.styles, opts.style) then
     vim.notify(
-      ("inkline.nvim: unknown style %q, using \"original\". Available: %s"):format(
+      ('inkline.nvim: unknown style %q, using "original". Available: %s'):format(
         tostring(opts.style),
         table.concat(M.styles, ", ")
       ),

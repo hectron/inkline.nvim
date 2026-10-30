@@ -9,7 +9,7 @@ M.colors = vim.tbl_deep_extend("force", base.base, {
   cyan = "#5ef1ff",
   teal = "#4ef2f2",
   red = "#FF0000",
-  orange = "#FF6600",   -- Exact main branch orange for lualine
+  orange = "#FF6600", -- Exact main branch orange for lualine
   orange_2 = "#FF8800", -- Also from main branch
   yellow = "#FFFF00",
 
@@ -18,14 +18,13 @@ M.colors = vim.tbl_deep_extend("force", base.base, {
   constant_color = "#ffdd00", -- Yellow for constants (yellow_2 from main)
 
   -- Update all color values to match main branch exactly
-  gold_2 = "#ffbb00",      -- Function color in main
-  yellow_2 = "#ffdd00",    -- Constant color in main
-  light_red = "#ff4f3f",   -- Keyword/Statement color in main
-  blue_green = "#44fbbe",  -- Type/Identifier color in main
-  blue_green_2 = "#93ffdd" -- Delimiter color in main
+  gold_2 = "#ffbb00", -- Function color in main
+  yellow_2 = "#ffdd00", -- Constant color in main
+  light_red = "#ff4f3f", -- Keyword/Statement color in main
+  blue_green = "#44fbbe", -- Type/Identifier color in main
+  blue_green_2 = "#93ffdd", -- Delimiter color in main
 })
 
 M.syntax = "vibrant_ink"
 
 return M
-

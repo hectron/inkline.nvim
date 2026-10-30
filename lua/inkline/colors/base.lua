@@ -2,6 +2,7 @@
 local M = {}
 
 ---@class inkline.Palette
+-- stylua: ignore
 M.base = {
   none           = "NONE",
   white          = "#FFFFFF",
@@ -79,4 +80,3 @@ M.base = {
 }
 
 return M
-

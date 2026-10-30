@@ -32,8 +32,20 @@ end
 
 T["heirline groups have colors"] = function()
   local fg = {
-    "Folded", "DiagnosticError", "String", "Function", "NonText", "Keyword", "Statement", "Special",
-    "DiagnosticWarn", "DiagnosticHint", "DiagnosticInfo", "diffAdded", "diffChanged", "CursorLineNr",
+    "Folded",
+    "DiagnosticError",
+    "String",
+    "Function",
+    "NonText",
+    "Keyword",
+    "Statement",
+    "Special",
+    "DiagnosticWarn",
+    "DiagnosticHint",
+    "DiagnosticInfo",
+    "diffAdded",
+    "diffChanged",
+    "CursorLineNr",
   }
   for _, group in ipairs(fg) do
     MiniTest.expect.no_equality({ group, H.hl(child, group, "fg") }, { group, vim.NIL })

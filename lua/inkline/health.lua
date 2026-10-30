@@ -37,7 +37,7 @@ function M.check()
   end
 
   if not vim.tbl_contains(config.styles, opts.style) then
-    health.warn(("Unknown style %q; \"original\" is used instead"):format(tostring(opts.style)))
+    health.warn(('Unknown style %q; "original" is used instead'):format(tostring(opts.style)))
   end
 
   local plugins = require("inkline.groups").plugins

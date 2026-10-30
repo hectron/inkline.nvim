@@ -10,8 +10,20 @@ local T = MiniTest.new_set({
 })
 
 local required = {
-  "bg", "fg", "white", "red", "green", "blue", "yellow", "purple", "cyan",
-  "function_color", "variable_color", "constant_color", "keyword", "type_color",
+  "bg",
+  "fg",
+  "white",
+  "red",
+  "green",
+  "blue",
+  "yellow",
+  "purple",
+  "cyan",
+  "function_color",
+  "variable_color",
+  "constant_color",
+  "keyword",
+  "type_color",
 }
 
 T["palette"] = MiniTest.new_set({ parametrize = { { "original" }, { "retro" }, { "cyberpunk" } } })

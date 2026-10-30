@@ -29,8 +29,22 @@ end
 function M.terminal(c)
   local Util = require("inkline.util")
   return {
-    c.dark_grey_2, c.red, c.green, c.yellow, c.light_blue, c.purple, c.cyan, c.fg,
-    c.dark_grey_5, c.light_red, c.light_green, c.gold, Util.blend_fg(c.light_blue, 0.75), c.purple_2, Util.blend_fg(c.cyan, 0.75), c.white,
+    c.dark_grey_2,
+    c.red,
+    c.green,
+    c.yellow,
+    c.light_blue,
+    c.purple,
+    c.cyan,
+    c.fg,
+    c.dark_grey_5,
+    c.light_red,
+    c.light_green,
+    c.gold,
+    Util.blend_fg(c.light_blue, 0.75),
+    c.purple_2,
+    Util.blend_fg(c.cyan, 0.75),
+    c.white,
   }
 end
 

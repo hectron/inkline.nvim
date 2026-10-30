@@ -39,4 +39,3 @@ return {
     c = { fg = colors.dark_grey_5, bg = colors.bg_alt },
   },
 }
-
