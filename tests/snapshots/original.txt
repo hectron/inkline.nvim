@@ -53,6 +53,7 @@
 @lsp.type.function fg=#ffbb00
 @lsp.type.interface fg=#44fbbe
 @lsp.type.keyword fg=#e65c00
+@lsp.type.macro fg=#e0e2ea
 @lsp.type.method fg=#ffbb00
 @lsp.type.modifier fg=#e65c00
 @lsp.type.namespace fg=#fcd63a
@@ -126,9 +127,9 @@
 @variable.parameter fg=#44fbbe
 @variable.parameter.builtin fg=#69fccb
 @variable.parameter.lua fg=#ff779b
-Added fg=#b3f6c0
+Added fg=#66ff00
 Boolean fg=#ffdd00
-Changed fg=#8cf8f7
+Changed fg=#4ef2f2
 Character fg=#ffdd00
 CmpItemAbbrMatch fg=#5ea1ff
 CmpItemAbbrMatchFuzzy fg=#5ea1ff
@@ -140,6 +141,8 @@ ComplHintMore fg=#8cf8f7
 Conceal fg=#4f5258
 Conditional fg=#ff4f3f
 Constant fg=#ffdd00
+CopilotAnnotation fg=#8a8e96 italic
+CopilotSuggestion fg=#8a8e96 italic
 CurSearch fg=#000000 bg=#ffbd5e
 Cursor fg=#000000 bg=#ffff00
 CursorColumn bg=#2c2e33
@@ -169,7 +172,7 @@ DiagnosticUnderlineHint sp=#a6dbff underline
 DiagnosticUnderlineInfo sp=#8cf8f7 underline
 DiagnosticUnderlineOk sp=#b3f6c0 underline
 DiagnosticUnderlineWarn sp=#fce094 underline
-DiagnosticUnnecessary fg=#6b6f78 italic
+DiagnosticUnnecessary fg=#7b8496 italic
 DiagnosticVirtualLinesError fg=#ff0000
 DiagnosticVirtualLinesHint fg=#4ef2f2
 DiagnosticVirtualLinesInfo fg=#5ea1ff
@@ -187,6 +190,14 @@ DiffDelete fg=#ffffff bg=#6b0000
 DiffText bg=#004747
 DiffTextAdd bg=#004747
 Directory fg=#8cf8f7
+DropBarCurrentContext bold
+DropBarCurrentContextName fg=#ffffff bold
+DropBarIconUIPickPivot fg=#ff0000
+DropBarIconUISeparatorMenu fg=#eceef4 bg=#000000
+DropBarMenuFloatBorder bg=#ffffff
+DropBarMenuHoverEntry bg=#323300
+DropBarMenuHoverIcon bg=#323300
+DropBarMenuHoverSymbol bold
 EndOfBuffer fg=#4f5258
 Error fg=#eef1f8 bg=#590008
 ErrorMsg fg=#ffc0b9
@@ -205,6 +216,7 @@ GitSignsAdd fg=#66ff00
 GitSignsAddInline fg=#ffffff bg=#228b22
 GitSignsChange fg=#4ef2f2
 GitSignsChangeInline fg=#ffffff bg=#228b22
+GitSignsCurrentLineBlame fg=#6b6f78
 GitSignsDelete fg=#ff0000
 GitSignsDeleteInline fg=#ffffff bg=#b22222
 Identifier fg=#44fbbe
@@ -396,7 +408,7 @@ PmenuShadow bg=#4f5258
 PmenuShadowThrough bg=#4f5258
 PmenuThumb bg=#4f5258
 PreCondit fg=#e0e2ea
-PreInsert fg=#b3f6c0
+PreInsert fg=#66ff00
 PreProc fg=#e0e2ea
 Question fg=#8cf8f7
 QuickFixLine fg=#8cf8f7
@@ -404,7 +416,7 @@ RedrawDebugClear bg=#6b5300
 RedrawDebugComposed bg=#005523
 RedrawDebugNormal reverse
 RedrawDebugRecompose bg=#590008
-Removed fg=#ffc0b9
+Removed fg=#ff0000
 Repeat fg=#ff4f3f
 Search fg=#000000 bg=#5ea1ff
 SnippetTabstop bg=#3c4048
@@ -444,8 +456,12 @@ Visual bg=#3c4048
 VisualNOS bg=#3c4048
 WarningMsg fg=#fce094
 WhichKey fg=#ffff00 bg=#000000 bold
+WhichKeyBorder fg=#6b6f78
 WhichKeyDesc fg=#eceef4
+WhichKeyFloatBorder fg=#6b6f78
+WhichKeyFloatTitle fg=#ffff00 bold
 WhichKeyGroup fg=#4ef2f2
+WhichKeyIcon fg=#ffff00
 WhichKeyIconAzure fg=#5ea1ff
 WhichKeyIconBlue fg=#0000ff
 WhichKeyIconCyan fg=#5ef1ff
@@ -455,11 +471,14 @@ WhichKeyIconOrange fg=#ff6600
 WhichKeyIconPurple fg=#a85cf5
 WhichKeyIconRed fg=#ff0000
 WhichKeyIconYellow fg=#ffff00
+WhichKeySeparator fg=#6b6f78
 WhichKeySeperator fg=#6b6f78
+WhichKeyTitle fg=#ffff00 bold
+WhichKeyValue fg=#66ff00
 Whitespace fg=#4f5258
 WildMenu bg=#3c4048
 WinBar fg=#ffffff
-WinBarNC fg=#9b9ea4 bg=#07080d
+WinBarNC fg=#8a8e96 bg=#1e2124
 WinSeparator fg=#ffffff bg=#000000
 diffAdded fg=#66ff00
 diffLine fg=#e0e2ea

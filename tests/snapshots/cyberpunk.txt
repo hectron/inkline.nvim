@@ -163,6 +163,9 @@ Added fg=#66ff00
 Boolean fg=#ffdd00
 Changed fg=#20b2aa
 Character fg=#ffdd00
+CmpItemAbbrMatch fg=#5ea1ff
+CmpItemAbbrMatchFuzzy fg=#5ea1ff
+CmpItemKind fg=#a85cf5
 ColorColumn bg=#4f5258
 Comment fg=#6b6f78 italic
 ComplHint fg=#4f5258
@@ -182,37 +185,37 @@ Debug fg=#20b2aa
 Define fg=#ff4f3f
 Delimiter fg=#66d9c3
 DiagnosticDeprecated sp=#ffc0b9 strikethrough
-DiagnosticError fg=#ffc0b9
-DiagnosticFloatingError fg=#ffc0b9
-DiagnosticFloatingHint fg=#a6dbff
-DiagnosticFloatingInfo fg=#8cf8f7
+DiagnosticError fg=#ff6b6b
+DiagnosticFloatingError fg=#ff6b6b
+DiagnosticFloatingHint fg=#20b2aa
+DiagnosticFloatingInfo fg=#5ea1ff
 DiagnosticFloatingOk fg=#b3f6c0
-DiagnosticFloatingWarn fg=#fce094
-DiagnosticHint fg=#a6dbff
-DiagnosticInfo fg=#8cf8f7
+DiagnosticFloatingWarn fg=#ff8c42
+DiagnosticHint fg=#20b2aa
+DiagnosticInfo fg=#5ea1ff
 DiagnosticOk fg=#b3f6c0
-DiagnosticSignError fg=#ffc0b9
-DiagnosticSignHint fg=#a6dbff
-DiagnosticSignInfo fg=#8cf8f7
+DiagnosticSignError fg=#ff6b6b
+DiagnosticSignHint fg=#20b2aa
+DiagnosticSignInfo fg=#5ea1ff
 DiagnosticSignOk fg=#b3f6c0
-DiagnosticSignWarn fg=#fce094
+DiagnosticSignWarn fg=#ff8c42
 DiagnosticUnderlineError sp=#ffc0b9 underline
 DiagnosticUnderlineHint sp=#a6dbff underline
 DiagnosticUnderlineInfo sp=#8cf8f7 underline
 DiagnosticUnderlineOk sp=#b3f6c0 underline
 DiagnosticUnderlineWarn sp=#fce094 underline
 DiagnosticUnnecessary fg=#7b8496 italic
-DiagnosticVirtualLinesError fg=#ffc0b9
-DiagnosticVirtualLinesHint fg=#a6dbff
-DiagnosticVirtualLinesInfo fg=#8cf8f7
+DiagnosticVirtualLinesError fg=#ff6b6b
+DiagnosticVirtualLinesHint fg=#20b2aa
+DiagnosticVirtualLinesInfo fg=#5ea1ff
 DiagnosticVirtualLinesOk fg=#b3f6c0
-DiagnosticVirtualLinesWarn fg=#fce094
-DiagnosticVirtualTextError fg=#ffc0b9
-DiagnosticVirtualTextHint fg=#a6dbff
-DiagnosticVirtualTextInfo fg=#8cf8f7
+DiagnosticVirtualLinesWarn fg=#ff8c42
+DiagnosticVirtualTextError fg=#ff6b6b
+DiagnosticVirtualTextHint fg=#20b2aa
+DiagnosticVirtualTextInfo fg=#5ea1ff
 DiagnosticVirtualTextOk fg=#b3f6c0
-DiagnosticVirtualTextWarn fg=#fce094
-DiagnosticWarn fg=#fce094
+DiagnosticVirtualTextWarn fg=#ff8c42
+DiagnosticWarn fg=#ff8c42
 DiffAdd bg=#004100
 DiffChange bg=#002930
 DiffDelete fg=#ffffff bg=#6b0000
@@ -222,7 +225,7 @@ Directory fg=#8cf8f7
 DropBarCurrentContext bold
 DropBarCurrentContextName fg=#ffffff bold
 DropBarIconUIPickPivot fg=#ff6b6b
-DropBarIconUISeparatorMenu fg=#eceef4 bg=#1e2124
+DropBarIconUISeparatorMenu fg=#eceef4 bg=#000000
 DropBarMenuFloatBorder bg=#ffffff
 DropBarMenuHoverEntry bg=#323300
 DropBarMenuHoverIcon bg=#323300
@@ -234,11 +237,11 @@ Exception fg=#ff4f3f
 FlashLabel fg=#ffd43b bg=#000000 bold
 FlashMatch fg=#5ea1ff bg=#000000 bold
 Float fg=#ffdd00
-FloatBorder fg=#6b6f78 bg=#1e2124
-FloatFooter fg=#ffd43b bg=#1e2124 bold
+FloatBorder fg=#6b6f78
+FloatFooter fg=#ffd43b bold
 FloatShadow bg=#4f5258
 FloatShadowThrough bg=#4f5258
-FloatTitle fg=#ffd43b bg=#1e2124 bold
+FloatTitle fg=#ffd43b bold
 Folded fg=#9b9ea4 bg=#07080d
 Function fg=#ffbb00
 GitSignsAdd fg=#66ff00
@@ -254,16 +257,16 @@ IncSearch fg=#000000 bg=#ffbd5e
 Include fg=#fcd63a
 Keyword fg=#ff4f3f
 Label fg=#ff4f3f
-LineNr fg=#4f5258
-LineNrAbove fg=#4f5258
-LineNrBelow fg=#4f5258
+LineNr fg=#6b6f78
+LineNrAbove fg=#6b6f78
+LineNrBelow fg=#6b6f78
 LspCodeLens fg=#4f5258
 LspCodeLensSeparator fg=#4f5258
 LspInlayHint fg=#4f5258
-LspReferenceRead bg=#3c4048
-LspReferenceTarget bg=#3c4048
-LspReferenceText bg=#3c4048
-LspReferenceWrite bg=#3c4048
+LspReferenceRead bg=#264f78
+LspReferenceTarget bg=#264f78
+LspReferenceText bg=#264f78
+LspReferenceWrite bg=#264f78
 LspSignatureActiveParameter bg=#3c4048
 Macro fg=#e0e2ea
 MatchParen fg=#66ff00 bold
@@ -272,9 +275,13 @@ MiniTestFail fg=#ff0000 bold default
 MiniTestPass fg=#00ff00 bold default
 ModeMsg fg=#b3f6c0
 MoreMsg fg=#8cf8f7
+NoiceCmdlineIcon fg=#fcd63a
+NoiceCmdlineIconSearch fg=#5ea1ff
+NoiceCmdlinePopupBorder fg=#fcd63a
+NoiceCmdlinePopupBorderSearch fg=#5ea1ff
 NonText fg=#4f5258
 Normal fg=#ffffff bg=#000000
-NormalFloat fg=#eceef4 bg=#1e2124
+NormalFloat fg=#eceef4 bg=#000000
 NormalNC fg=#ffffff bg=#1e2124
 Number fg=#ffdd00
 NvimAnd fg=#e0e2ea
@@ -466,9 +473,13 @@ TabLine fg=#c4c6cd bg=#2c2e33
 TabLineFill fg=#c4c6cd bg=#2c2e33
 TabLineSel bold
 Tag fg=#20b2aa
+TelescopeNormal fg=#ffffff bg=#000000
+TelescopeSelection fg=#ffffff bg=#3c4048
 TermCursor reverse
 Title fg=#e0e2ea bold
 Todo fg=#e0e2ea bold
+TreesitterContext fg=#7b8496 bg=#000000
+TreesitterContextBottom sp=#4c566a underline
 Type fg=#00d084
 Typedef fg=#00d084
 Underlined underline
@@ -476,12 +487,12 @@ VertSplit fg=#ffffff bg=#000000
 Visual bg=#3c4048
 VisualNOS bg=#3c4048
 WarningMsg fg=#fce094
-WhichKey fg=#00ffff bold
+WhichKey fg=#ffd43b bg=#000000 bold
 WhichKeyBorder fg=#6b6f78
-WhichKeyDesc fg=#5ea1ff
+WhichKeyDesc fg=#eceef4
 WhichKeyFloatBorder fg=#6b6f78
 WhichKeyFloatTitle fg=#ffd43b bold
-WhichKeyGroup fg=#a85cf5 bold
+WhichKeyGroup fg=#20b2aa
 WhichKeyIcon fg=#ffd43b
 WhichKeyIconAzure fg=#5ea1ff
 WhichKeyIconBlue fg=#4dabf7

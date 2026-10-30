@@ -1,11 +1,33 @@
--- Original variant treesitter highlights (from main branch)
+-- Syntax for the original style, following TextMate's vibrant-ink
 local Util = require("inkline.util")
 
 local M = {}
 
-function M.get(c, opts)
+---@param c table
+function M.get(c)
   -- stylua: ignore
-  local ret = {
+  return {
+    diffAdded               = { link = "String" },
+    diffRemoved             = { link = "Statement" },
+    diffLine                = { link = "PreProc" },
+    diffSubname             = { link = "Comment" },
+
+    gitcommitOverflow       = { fg = c.red },
+    gitcommitSummary        = { fg = c.blue },
+    gitcommitComment        = { fg = c.dark_grey_5 },
+    gitcommitUntracked      = { fg = c.dark_grey_5 },
+    gitcommitDiscarded      = { fg = c.dark_grey_5 },
+    gitcommitSelected       = { fg = c.dark_grey_5 },
+    gitcommitHeader         = { fg = c.purple },
+    gitcommitSelectedType   = { fg = c.blue },
+    gitcommitUnmergedType   = { fg = c.blue },
+    gitcommitDiscardedType  = { fg = c.blue },
+    gitcommitBranch         = { fg = c.orange, bold = true },
+    gitcommitUntrackedFile  = { fg = c.yellow },
+    gitcommitUnmergedFile   = { fg = c.red, bold = true },
+    gitcommitDiscardedFile  = { fg = c.red, bold = true },
+    gitcommitSelectedFile   = { fg = c.green, bold = true },
+
     ["@annotation"]                 = "PreProc",
     ["@attribute"]                  = "PreProc",
     ["@boolean"]                    = "Boolean",
@@ -105,10 +127,25 @@ function M.get(c, opts)
     ["@variable.parameter"]         = { fg = c.blue_green },                     -- For parameters of a function.
     ["@variable.parameter.builtin"] = { fg = Util.blend_fg(c.blue_green, 0.8) }, -- For builtin parameters of a function, e.g. "..." or Smali's p[1-99]
     ["@variable.parameter.lua"]     = { fg = c.pink },
-  }
 
-  return ret
+        ["@lsp.type.class"]         = "@type",
+    ["@lsp.type.comment"]       = "@comment",
+    ["@lsp.type.decorator"]     = "@attribute",
+    ["@lsp.type.enum"]          = "@type",
+    ["@lsp.type.enumMember"]    = "@constant",
+    ["@lsp.type.function"]      = "@function",
+    ["@lsp.type.interface"]     = "@type",
+    ["@lsp.type.macro"]         = "@function.macro",
+    ["@lsp.type.method"]        = "@function.method",
+    ["@lsp.type.namespace"]     = "@namespace",
+    ["@lsp.type.parameter"]     = "@parameter",
+    ["@lsp.type.parameter.lua"] = "@variable.parameter.lua",
+    ["@lsp.type.property"]      = "@property",
+    ["@lsp.type.struct"]        = "@type",
+    ["@lsp.type.type"]          = "@type",
+    ["@lsp.type.typeParameter"] = "@type.definition",
+    ["@lsp.type.variable"]      = "@variable",
+  }
 end
 
 return M
-

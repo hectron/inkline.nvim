@@ -6,7 +6,10 @@ local M = {}
 M.colors = vim.tbl_deep_extend("force", base.base, {
   -- Variant-specific syntax colors
   function_color = "#5ea1ff", -- Light blue for functions
+  property = base.base.pink,
   constant_color = "#ffd43b", -- Warm yellow for constants
 })
+
+M.syntax = "modern"
 
 return M

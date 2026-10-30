@@ -54,6 +54,7 @@ M.base = {
   magenta        = "#ff00d0",
   dark_magenta   = "#8B008B",
   pink           = "#ff779b",
+  soft_green     = "#27ae60",
 
   -- Semantic colors for diagnostics and treesitter
   error          = "#e74c3c",

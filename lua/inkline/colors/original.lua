@@ -25,5 +25,7 @@ M.colors = vim.tbl_deep_extend("force", base.base, {
   blue_green_2 = "#93ffdd" -- Delimiter color in main
 })
 
+M.syntax = "vibrant_ink"
+
 return M
 

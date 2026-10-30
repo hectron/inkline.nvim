@@ -1,33 +1,15 @@
 local M = {}
 
----@param colors inkline.Palette
----@param opts? inkline.Config
-function M.setup(colors, opts)
-  opts = require("inkline.config").extend(opts)
+---@param c table
+---@param opts inkline.ResolvedConfig
+function M.setup(c, opts)
+  local syntax = require("inkline.colors." .. opts.style).syntax
   local groups = {}
-  local base_groups, treesitter_groups, lsp_groups
-
-  -- Use variant-specific highlight groups for original style
-  if opts.style == "original" then
-    base_groups = require("inkline.groups.original.base").get(colors, opts)
-    treesitter_groups = require("inkline.groups.original.treesitter").get(colors, opts)
-    lsp_groups = require("inkline.groups.original.lsp").get(colors, opts)
-  else
-    -- Use modern highlight groups for other variants
-    base_groups = require("inkline.groups.base").get(colors, opts)
-    treesitter_groups = require("inkline.groups.treesitter").get(colors, opts)
-    lsp_groups = require("inkline.groups.lsp").get(colors, opts)
-  end
-
-  local function merge_tables(dest, src)
-    for k, v in pairs(src) do
-      dest[k] = v
+  for _, name in ipairs({ "editor", "syntax", syntax }) do
+    for group, hl in pairs(require("inkline.groups." .. name).get(c, opts)) do
+      groups[group] = hl
     end
   end
-  merge_tables(groups, base_groups)
-  merge_tables(groups, treesitter_groups)
-  merge_tables(groups, lsp_groups)
-
   return groups
 end
 

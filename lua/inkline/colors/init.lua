@@ -13,12 +13,8 @@ function M.setup(opts)
     colors.bg = colors.none
   end
 
-  -- Set string color based on vibrant_strings option
-  if opts.vibrant_strings then
-    colors.string_color = colors.green -- #66FF00 (vibrant lime green)
-  else
-    colors.string_color = "#27ae60"    -- soft forest green (default)
-  end
+  colors.string_color = opts.vibrant_strings and colors.green or colors.soft_green
+  colors.comment = opts.purple_comments and colors.purple or colors.dark_grey_5
 
   -- Apply user color overrides
   if opts.on_colors then

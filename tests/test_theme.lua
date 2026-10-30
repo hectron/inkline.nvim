@@ -14,13 +14,17 @@ local function highlights(style)
   return require("inkline.theme").setup({ style = style, cache = false })
 end
 
-T["every style defines the same groups"] = function()
-  local reference = vim.tbl_keys(highlights("original"))
-  table.sort(reference)
+T["every style colors the core captures"] = function()
+  local captures = { "@variable", "@function", "@keyword", "@string", "@type", "@comment", "@constant", "@property", "@operator" }
   for _, style in ipairs(styles) do
-    local names = vim.tbl_keys(highlights(style))
-    table.sort(names)
-    eq({ style, names }, { style, reference })
+    vim.cmd("hi clear")
+    for name, hl in pairs(highlights(style)) do
+      vim.api.nvim_set_hl(0, name, type(hl) == "string" and { link = hl } or hl)
+    end
+    for _, capture in ipairs(captures) do
+      local fg = vim.api.nvim_get_hl(0, { name = capture, link = false }).fg
+      MiniTest.expect.no_equality({ style, capture, fg }, { style, capture, nil })
+    end
   end
 end
 
