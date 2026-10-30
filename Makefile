@@ -7,13 +7,17 @@ export XDG_DATA_HOME := $(CURDIR)/.tests/xdg/data
 export XDG_STATE_HOME := $(CURDIR)/.tests/xdg/state
 export XDG_CACHE_HOME := $(CURDIR)/.tests/xdg/cache
 
-.PHONY: test snapshots deps clean
+.PHONY: test snapshots lint deps clean
 
 test: deps
 	$(NVIM) --headless --noplugin -u tests/minimal_init.lua -c "lua MiniTest.run()"
 
 snapshots: deps
 	UPDATE_SNAPSHOTS=1 $(NVIM) --headless --noplugin -u tests/minimal_init.lua -c "lua MiniTest.run()"
+
+lint:
+	stylua --check lua tests colors
+	lua-language-server --check . --checklevel=Warning --configpath=.luarc.json
 
 deps: $(DEPS)/mini.nvim
 

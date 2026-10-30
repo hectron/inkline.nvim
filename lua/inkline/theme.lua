@@ -2,7 +2,7 @@
 local M = {}
 
 ---@param opts? inkline.Config
----@return table<string, vim.api.keyset.highlight|string> highlights, table colors
+---@return table<string, table|string> highlights, table colors
 function M.setup(opts)
   opts = require("inkline.config").extend(opts)
 

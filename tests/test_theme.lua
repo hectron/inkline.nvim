@@ -15,7 +15,8 @@ local function highlights(style)
 end
 
 T["every style colors the core captures"] = function()
-  local captures = { "@variable", "@function", "@keyword", "@string", "@type", "@comment", "@constant", "@property", "@operator" }
+  local captures =
+    { "@variable", "@function", "@keyword", "@string", "@type", "@comment", "@constant", "@property", "@operator" }
   for _, style in ipairs(styles) do
     vim.cmd("hi clear")
     for name, hl in pairs(highlights(style)) do
@@ -32,7 +33,10 @@ T["links point at existing groups"] = function()
   for _, style in ipairs(styles) do
     local groups = highlights(style)
     for name, hl in pairs(groups) do
-      local target = type(hl) == "string" and hl or hl.link
+      local target = hl
+      if type(hl) == "table" then
+        target = hl.link
+      end
       if target and not name:find("^DropBar") then
         -- Undefined dotted groups fall back to their parent (@type.definition -> @type)
         local exists, name_ = false, target
