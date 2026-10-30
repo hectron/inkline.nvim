@@ -154,6 +154,7 @@ Plugin names for |inkline-option-plugins|:
     `noice`                folke/noice.nvim
     `telescope`            nvim-telescope/telescope.nvim
     `treesitter_context`   nvim-treesitter/nvim-treesitter-context
+    `trouble`              folke/trouble.nvim
     `which_key`            folke/which-key.nvim
 
 Each lives in `lua/inkline/groups/plugins/<name>.lua`.

@@ -494,6 +494,11 @@ Title fg=#e0e2ea bold
 Todo fg=#e0e2ea bold
 TreesitterContext fg=#7b8496 bg=#000000
 TreesitterContextBottom sp=#4c566a underline
+TroubleCount fg=#ffd43b bg=#3c4048 bold
+TroubleDirectory fg=#5ea1ff
+TroubleFilename fg=#5ea1ff
+TroubleIndent fg=#393f4a
+TroubleNormalNC fg=#ffffff bg=#1e2124
 Type fg=#00d084
 Typedef fg=#00d084
 Underlined underline

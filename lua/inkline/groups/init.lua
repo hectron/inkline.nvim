@@ -13,6 +13,7 @@ M.plugins = {
   "noice",
   "telescope",
   "treesitter_context",
+  "trouble",
   "which_key",
 }
 

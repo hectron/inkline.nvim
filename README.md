@@ -9,7 +9,7 @@ inkline is a dark, early-2000s colorscheme for [Neovim][neovim], ported from Tex
 - Three styles: `original`, `retro`, and `cyberpunk`
 - Tree-sitter, LSP semantic token, and diagnostic highlights
 - Terminal colors for `:terminal`
-- Highlights for gitsigns, telescope, nvim-cmp, noice, flash, which-key, dropbar, copilot, and treesitter-context, each of which can be turned off
+- Highlights for gitsigns, telescope, nvim-cmp, noice, flash, which-key, dropbar, copilot, treesitter-context, and trouble, each of which can be turned off
 - lualine themes
 - `:checkhealth inkline`
 
@@ -74,7 +74,7 @@ require("inkline").setup({
 })
 ```
 
-Plugin names for `plugins`: `cmp`, `copilot`, `dropbar`, `flash`, `gitsigns`, `noice`, `telescope`, `treesitter_context`, `which_key`.
+Plugin names for `plugins`: `cmp`, `copilot`, `dropbar`, `flash`, `gitsigns`, `noice`, `telescope`, `treesitter_context`, `trouble`, `which_key`.
 
 ## Customization
 
