@@ -1,0 +1,16 @@
+# Development tools for inkline.nvim. Run `mise install` in the repo.
+[tools]
+# Highlight snapshots are recorded on Neovim 0.12
+neovim = "0.12.5"
+
+# Formatting and type checks (`make lint`)
+stylua = "2.6.0"
+lua-language-server = "3.19.2"
+
+# README screenshots and demo (`make screenshots`, `make demo`)
+tmux = "3.7c"
+"aqua:charmbracelet/freeze" = "0.2.2"
+vhs = "0.12.1"
+# ttyd has no macOS release; on macOS run `brew install ttyd`
+ttyd = { version = "1.7.7", os = ["linux"] }
+ffmpeg = "9.0.2"
