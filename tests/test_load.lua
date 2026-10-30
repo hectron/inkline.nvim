@@ -82,6 +82,7 @@ end
 
 T["setup"]["cache option writes nothing"] = function()
   child.lua("vim.fn.mkdir(vim.fn.stdpath('cache'), 'p')")
+  child.lua("require('inkline').clear_cache()")
   H.load(child, "{ cache = true }")
   eq(child.lua_get("vim.fn.glob(vim.fn.stdpath('cache') .. '/inkline-*', false, true)"), {})
 end

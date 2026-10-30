@@ -38,10 +38,11 @@ function M.switch_style(style)
   vim.cmd.colorscheme("inkline-" .. style)
 end
 
----Clear the cache for all styles
+---@deprecated inkline no longer caches highlights. Removes files left by older versions.
 function M.clear_cache()
-  require("inkline.util").cache.clear()
-  vim.notify("inkline.nvim: Cache cleared", vim.log.levels.INFO)
+  for _, style in ipairs(config.styles) do
+    vim.uv.fs_unlink(vim.fn.stdpath("cache") .. "/inkline-" .. style .. ".json")
+  end
 end
 
 return M

@@ -76,23 +76,10 @@ require("inkline").setup({
   transparent = false,          -- Transparent background
   purple_comments = false,      -- Use purple for comments
   vibrant_strings = true,       -- Use vibrant green for strings
-  cache = true,                 -- Enable caching for better performance
   on_colors = function(colors) end,      -- Customize colors
   on_highlights = function(hl, c) end,   -- Customize highlights
 })
 ```
-
-### Performance Caching
-
-inkline.nvim includes a high-performance caching system that stores pre-computed highlight groups:
-
-- **Enabled by default** (`cache = true`)
-- **Cache location**: `~/.cache/nvim/inkline-{style}.json`
-- **Auto-invalidation**: Automatically detects config changes
-- **Significant speedup**: Faster theme loading on subsequent startups
-- **Manual clearing**: `require("inkline").clear_cache()`
-
-The cache is automatically invalidated when you change any configuration options, ensuring you always see your latest customizations.
 
 ## Customization
 
