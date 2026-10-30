@@ -33,7 +33,7 @@ T["links point at existing groups"] = function()
   for _, style in ipairs(styles) do
     local groups = highlights(style)
     for name, hl in pairs(groups) do
-      local target = hl
+      local target = hl --[[@as string?]]
       if type(hl) == "table" then
         target = hl.link
       end
