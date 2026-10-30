@@ -1,0 +1,198 @@
+*inkline.txt*  Dark early-2000s colorscheme ported from TextMate's vibrant-ink
+
+==============================================================================
+CONTENTS                                                    *inkline-contents*
+
+  1. Introduction .................................. |inkline-introduction|
+  2. Styles ........................................ |inkline-styles|
+  3. Options ....................................... |inkline-options|
+  4. Customization ................................. |inkline-customization|
+  5. Plugins ....................................... |inkline-plugins|
+  6. lualine ....................................... |inkline-lualine|
+  7. Lua API ....................................... |inkline-api|
+  8. Health ........................................ |inkline-health|
+
+==============================================================================
+1. INTRODUCTION                                         *inkline-introduction*
+
+inkline is a dark colorscheme with Tree-sitter, LSP semantic token,
+diagnostic, terminal, and plugin highlights. It requires Neovim 0.11 or newer
+with 'termguicolors' enabled.
+
+Load it like any colorscheme: >vim
+    colorscheme inkline
+<
+|inkline.setup()| is optional. It stores options; `:colorscheme` applies them.
+
+==============================================================================
+2. STYLES                                                     *inkline-styles*
+
+`original`    Default. Follows TextMate's vibrant-ink.
+`retro`       Light blue functions, pink properties, warm yellow constants.
+`cyberpunk`   Cyan functions, magenta properties, green constants.
+
+                                     *inkline-original* *inkline-retro*
+                                     *inkline-cyberpunk*
+`:colorscheme inkline` uses the style from |inkline.setup()|. Each style also
+has its own colorscheme: >vim
+    colorscheme inkline-original
+    colorscheme inkline-retro
+    colorscheme inkline-cyberpunk
+<
+`g:colors_name` is always `inkline-<style>`.
+
+==============================================================================
+3. OPTIONS                                                   *inkline-options*
+
+Pass options to |inkline.setup()|. Defaults: >lua
+    require("inkline").setup({
+      style = "original",
+      dim_inactive_windows = true,
+      transparent = false,
+      purple_comments = false,
+      vibrant_strings = true,
+      terminal_colors = true,
+      plugins = { default = true },
+      on_colors = nil,
+      on_highlights = nil,
+    })
+<
+style                                                  *inkline-option-style*
+    `"original"`, `"retro"`, or `"cyberpunk"`. An unknown style falls back
+    to `"original"` with a warning.
+
+dim_inactive_windows                    *inkline-option-dim_inactive_windows*
+    Give inactive windows a darker background through |hl-NormalNC| and
+    |hl-WinBarNC|.
+
+transparent                                      *inkline-option-transparent*
+    Leave the editor background unset so the terminal background shows.
+
+purple_comments                              *inkline-option-purple_comments*
+    Use purple instead of gray for comments.
+
+vibrant_strings                              *inkline-option-vibrant_strings*
+    Use lime green for strings. `false` uses a softer green.
+
+terminal_colors                              *inkline-option-terminal_colors*
+    Set |terminal_color_0| through `terminal_color_15` from the palette.
+
+plugins                                              *inkline-option-plugins*
+    Turn plugin highlights on or off. `default` applies to every plugin, and
+    a plugin name overrides it. See |inkline-plugins|. >lua
+        plugins = { default = true, flash = false }
+        plugins = { default = false, gitsigns = true }
+<
+on_colors                                          *inkline-option-on_colors*
+    `fun(colors: inkline.Palette): inkline.Palette?`
+    Called once per load with the style's palette. See
+    |inkline-customization|.
+
+on_highlights                                  *inkline-option-on_highlights*
+    `fun(highlights: inkline.Highlights, colors: inkline.Palette):`
+    `inkline.Highlights?`
+    Called once per load with every highlight group. See
+    |inkline-customization|.
+
+cache                                                  *inkline-option-cache*
+    Deprecated and ignored. inkline no longer caches highlights.
+
+==============================================================================
+4. CUSTOMIZATION                                       *inkline-customization*
+
+Both callbacks may modify their table in place or return a replacement.
+
+Change palette colors: >lua
+    require("inkline").setup({
+      on_colors = function(c)
+        c.purple = "#ff00ff"
+      end,
+    })
+<
+Change highlight groups. A table is passed to |nvim_set_hl()|; a string links
+to that group: >lua
+    require("inkline").setup({
+      on_highlights = function(hl, c)
+        hl.Comment = { fg = "#888888", italic = true }
+        hl["@markup.link"] = { fg = c.yellow }
+        hl["@string.special"] = "Special"
+      end,
+    })
+<
+Tree-sitter captures that inkline does not define fall back to their parent,
+so overriding `@function` also changes `@function.call` and
+`@function.method.call`.
+
+                                                     *inkline-palette*
+Common palette keys: `bg`, `bg_alt`, `bg_highlight`, `bg_visual`, `fg`,
+`white`, `black`, `red`, `orange`, `yellow`, `gold`, `green`, `teal`, `cyan`,
+`blue`, `light_blue`, `purple`, `magenta`, `pink`, and the grays
+`dark_grey_1` through `dark_grey_6`. Computed keys: `string_color`,
+`comment`, `function_color`, `constant_color`, and (retro, cyberpunk)
+`property`. Computed keys are set before |inkline-option-on_colors| runs, so
+set them directly (for example `c.comment`) rather than the color they came
+from. Inspect a palette with: >lua
+    :lua =require("inkline.colors").setup({ style = "retro" })
+<
+==============================================================================
+5. PLUGINS                                                   *inkline-plugins*
+
+Plugin names for |inkline-option-plugins|:
+
+    `cmp`                  hrsh7th/nvim-cmp
+    `copilot`              github/copilot.vim, zbirenbaum/copilot.lua
+    `dropbar`              Bekaboo/dropbar.nvim
+    `flash`                folke/flash.nvim
+    `gitsigns`             lewis6991/gitsigns.nvim
+    `noice`                folke/noice.nvim
+    `telescope`            nvim-telescope/telescope.nvim
+    `treesitter_context`   nvim-treesitter/nvim-treesitter-context
+    `which_key`            folke/which-key.nvim
+
+Each lives in `lua/inkline/groups/plugins/<name>.lua`.
+
+==============================================================================
+6. LUALINE                                                   *inkline-lualine*
+
+>lua
+    require("lualine").setup({ options = { theme = "inkline" } })
+<
+`inkline` follows the style from |inkline.setup()|. `inkline-original`,
+`inkline-retro`, and `inkline-cyberpunk` always use their own style.
+
+==============================================================================
+7. LUA API                                                       *inkline-api*
+
+inkline.setup({opts})                                        *inkline.setup()*
+    Store options for later loads. Does not apply the colorscheme. See
+    |inkline-options|.
+
+inkline.load({opts})                                          *inkline.load()*
+    Apply the colorscheme with the stored options, overridden by {opts}.
+    The `colors/inkline*.lua` files call this.
+
+inkline.switch_style({style})                         *inkline.switch_style()*
+    Set the stored style and run `:colorscheme inkline-<style>`.
+
+inkline.get_styles()                                    *inkline.get_styles()*
+    Return the list of style names.
+
+inkline.clear_cache()                                  *inkline.clear_cache()*
+    Deprecated. Removes cache files written by inkline 2.1 and earlier.
+
+require("inkline.colors").setup({opts})              *inkline.colors.setup()*
+    Return the palette for the configured style with options and
+    |inkline-option-on_colors| applied.
+
+require("inkline.theme").setup({opts})                *inkline.theme.setup()*
+    Return every highlight group and the palette without changing editor
+    state.
+
+==============================================================================
+8. HEALTH                                                     *inkline-health*
+
+`:checkhealth inkline` reports the Neovim version, invalid option types,
+unknown option and plugin names, the deprecated `cache` option,
+'termguicolors', and whether inkline is the active colorscheme.
+
+ vim:tw=78:ts=8:ft=help:norl:
