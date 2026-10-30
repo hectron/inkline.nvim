@@ -29,4 +29,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: v2
-          args: --check lua tests colors
+          args: --check lua tests colors scripts
