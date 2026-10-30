@@ -271,8 +271,8 @@ LspSignatureActiveParameter bg=#3c4048
 Macro fg=#e0e2ea
 MatchParen fg=#66ff00 bold
 MiniTestEmphasis bold default
-MiniTestFail fg=#ff0000 bold default
-MiniTestPass fg=#00ff00 bold default
+MiniTestFail fg=#ff6b6b bold default
+MiniTestPass fg=#66ff00 bold default
 ModeMsg fg=#b3f6c0
 MoreMsg fg=#8cf8f7
 NoiceCmdlineIcon fg=#fcd63a
@@ -537,3 +537,19 @@ rubyInterpolation fg=#ffffff
 rubyPseudoVariable fg=#20b2aa
 rubyStringDelimiter fg=#66ff00
 rubySymbol fg=#20b2aa
+terminal_color_0 #24272e
+terminal_color_1 #ff6b6b
+terminal_color_2 #66ff00
+terminal_color_3 #ffd43b
+terminal_color_4 #5ea1ff
+terminal_color_5 #a85cf5
+terminal_color_6 #00ffff
+terminal_color_7 #eceef4
+terminal_color_8 #6b6f78
+terminal_color_9 #ff4f3f
+terminal_color_10 #5eff6c
+terminal_color_11 #fcd63a
+terminal_color_12 #86b9ff
+terminal_color_13 #e080ff
+terminal_color_14 #40ffff
+terminal_color_15 #ffffff

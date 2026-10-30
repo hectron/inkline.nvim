@@ -54,6 +54,11 @@ T["colorscheme"]["sets terminal colors"] = function()
   end
 end
 
+T["colorscheme"]["terminal_colors = false leaves terminal colors alone"] = function()
+  H.load(child, "{ terminal_colors = false }")
+  eq(child.g.terminal_color_0, vim.NIL)
+end
+
 T["colorscheme"]["falls back to original for an unknown style"] = function()
   H.load(child, "{ style = 'cypberpunk' }")
   eq(child.g.colors_name, "inkline-original")
