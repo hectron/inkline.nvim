@@ -1,23 +1,12 @@
 local M = {}
 
--- Dynamic color loader that loads variants based on style
-local styles = setmetatable({}, {
-  __index = function(_, style)
-    local ok, palette = pcall(require, "inkline.colors." .. style)
-    if not ok then
-      vim.notify("inkline.nvim: style '" .. style .. "' not found, falling back to 'original'", vim.log.levels.WARN)
-      palette = require("inkline.colors.original")
-    end
-    return palette.colors
-  end,
-})
 
 ---@param opts? inkline.Config
 function M.setup(opts)
   opts = require("inkline.config").extend(opts)
 
   -- Get base colors for the selected style
-  local colors = vim.deepcopy(styles[opts.style])
+  local colors = vim.deepcopy(require("inkline.colors." .. opts.style).colors)
 
   -- Apply transparency if enabled
   if opts.transparent then
@@ -39,12 +28,7 @@ function M.setup(opts)
   return colors, opts
 end
 
--- Expose available styles for introspection
 ---@type inkline.Style[]
-M.styles = {
-  "original",
-  "retro",
-  "cyberpunk"
-}
+M.styles = require("inkline.config").styles
 
 return M
