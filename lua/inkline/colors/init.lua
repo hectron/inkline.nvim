@@ -1,8 +1,22 @@
 ---@class inkline.StyleModule
 ---@field colors inkline.Palette
 ---@field syntax "vibrant_ink"|"modern" Syntax group set under inkline.groups
+---@field property? string Palette key used for properties in the modern syntax set
 
 local M = {}
+
+---Palette keys computed from other colors and options.
+---@param c inkline.Palette
+---@param opts inkline.ResolvedConfig
+---@param style inkline.StyleModule
+---@return table<string, string>
+local function derived(c, opts, style)
+  return {
+    string_color = opts.vibrant_strings and c.green or c.soft_green,
+    comment = opts.purple_comments and c.purple or c.dark_grey_5,
+    property = style.property and c[style.property] or nil,
+  }
+end
 
 ---Palette for the configured style with options and `on_colors` applied.
 ---@param opts? inkline.Config
@@ -19,12 +33,19 @@ function M.setup(opts)
     colors.bg = colors.none
   end
 
-  colors.string_color = opts.vibrant_strings and colors.green or colors.soft_green
-  colors.comment = opts.purple_comments and colors.purple or colors.dark_grey_5
+  local before = derived(colors, opts, style)
+  for key, value in pairs(before) do
+    colors[key] = value
+  end
 
-  -- Apply user color overrides
   if opts.on_colors then
     colors = opts.on_colors(colors) or colors
+    -- Follow base colors the callback changed, unless it set the computed key itself
+    for key, value in pairs(derived(colors, opts, style)) do
+      if colors[key] == before[key] then
+        colors[key] = value
+      end
+    end
   end
 
   return colors, opts

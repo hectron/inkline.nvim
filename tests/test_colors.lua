@@ -55,4 +55,38 @@ T["palette"]["vibrant_strings picks string color"] = function(style)
   eq(colors.setup({ style = style, vibrant_strings = false }).string_color, "#27ae60")
 end
 
+T["on_colors"] = MiniTest.new_set()
+
+T["on_colors"]["base color changes reach computed colors"] = function()
+  local c = colors.setup({
+    style = "retro",
+    purple_comments = true,
+    on_colors = function(c)
+      c.pink = "#111111"
+      c.purple = "#222222"
+      c.green = "#333333"
+    end,
+  })
+  eq({ c.property, c.comment, c.string_color }, { "#111111", "#222222", "#333333" })
+end
+
+T["on_colors"]["computed colors set directly win"] = function()
+  local c = colors.setup({
+    on_colors = function(c)
+      c.comment = "#444444"
+      c.dark_grey_5 = "#555555"
+    end,
+  })
+  eq(c.comment, "#444444")
+end
+
+T["on_colors"]["can return a new table"] = function()
+  local c = colors.setup({
+    on_colors = function(c)
+      return vim.tbl_extend("force", c, { green = "#666666" })
+    end,
+  })
+  eq(c.string_color, "#666666")
+end
+
 return T
