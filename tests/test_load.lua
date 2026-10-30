@@ -33,6 +33,16 @@ T["colorscheme"]["loads style entrypoint"] = MiniTest.new_set(
   }
 )
 
+T["colorscheme"]["lists every style as a colorscheme"] = function()
+  local names = child.lua_get([[vim.fn.getcompletion("inkline", "color")]])
+  local expected = { "inkline" }
+  for _, style in ipairs(child.lua_get([[require("inkline").get_styles()]])) do
+    table.insert(expected, "inkline-" .. style)
+  end
+  table.sort(expected)
+  eq(names, expected)
+end
+
 T["colorscheme"]["works without setup()"] = function()
   child.cmd("colorscheme inkline")
   eq(child.g.colors_name, "inkline-original")
