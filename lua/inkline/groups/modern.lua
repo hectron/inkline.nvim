@@ -31,11 +31,8 @@ function M.get(c)
 
     ["@annotation"]                   = "PreProc",
     ["@attribute"]                    = "PreProc",
-    ["@boolean"]                      = "Boolean",
     ["@boolean.lua"]                  = { fg = c.orange },
-    ["@character"]                    = "Character",
     ["@character.printf"]             = "SpecialChar",
-    ["@character.special"]            = "SpecialChar",
     ["@comment"]                      = { fg = c.comment, italic = true },
     ["@comment.error"]                = { fg = c.error },
     ["@comment.hint"]                 = { fg = c.hint },
@@ -45,7 +42,6 @@ function M.get(c)
     ["@comment.warning"]              = { fg = c.warning },
     ["@constant"]                     = { fg = c.constant_color },
     ["@constant.lua"]                 = { fg = c.constant_color },
-    ["@constant.builtin"]             = "Special",
     ["@constant.macro"]               = "Define",
     ["@constructor"]                  = { fg = c.purple_3 }, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
     ["@diff.delta"]                   = { fg = c.yellow, bold = true },
@@ -53,23 +49,13 @@ function M.get(c)
     ["@diff.plus"]                    = { fg = c.green, bold = true },
     ["@function"]                     = { fg = c.function_color },
     ["@function.builtin"]             = { fg = c.function_color, bold = true },
-    ["@function.call"]                = { fg = c.function_color },
     ["@function.macro"]               = { fg = c.function_color, italic = true },
-    ["@function.method"]              = { fg = c.function_color },
-    ["@function.method.call"]         = { fg = c.function_color },
     ["@keyword"]                      = { fg = c.keyword }, -- For keywords that don't fall in previous categories.
-    ["@keyword.conditional"]          = { fg = c.keyword },
-    ["@keyword.coroutine"]            = { fg = c.keyword },
-    ["@keyword.debug"]                = { fg = c.keyword },
-    ["@keyword.directive"]            = { fg = c.keyword },
-    ["@keyword.directive.define"]     = { fg = c.keyword },
-    ["@keyword.exception"]            = { fg = c.keyword },
     ["@keyword.function"]             = { fg = c.keyword }, -- For keywords used to define a function.
     ["@keyword.import"]               = "Include",
     ["@keyword.operator"]             = "@operator",
     ["@keyword.operator.lua"]         = "Statement",
     ["@keyword.repeat"]               = "Repeat",
-    ["@keyword.return"]               = "@keyword",
     ["@keyword.storage"]              = "StorageClass",
     ["@label"]                        = { fg = c.light_blue }, -- For labels: `label:` in C and `:label:` in Lua.
     ["@markup"]                       = "@none",
@@ -103,8 +89,6 @@ function M.get(c)
     ["@module.builtin"]               = { fg = c.red }, -- Variable names that are defined by the languages, like `this` or `self`.
     ["@namespace.builtin"]            = "@variable.builtin",
     ["@none"]                         = {},
-    ["@number"]                       = "Number",
-    ["@number.float"]                 = "Float",
     ["@operator"]                     = { fg = Util.blend_fg(c.blue_green_2, 0.6) }, -- For any operator: `+`, but also `->` and `*` in C.
     ["@property"]                     = { fg = c.property },
     ["@punctuation.bracket"]          = { fg = c.dark_white },                       -- For brackets and parens.
@@ -120,7 +104,6 @@ function M.get(c)
     ["@tag.delimiter"]                = { fg = c.blue_green_2 },
     ["@type"]                         = { fg = c.type_color },
     ["@type.ruby"]                    = { fg = c.type_color },
-    ["@type.definition"]              = { fg = c.type_color },
     ["@type.qualifier"]               = { fg = c.keyword },
     ["@variable"]                     = { fg = c.variable_color },                 -- Any variable name that does not have another highlight.
     ["@variable.builtin"]             = { fg = c.pink, italic = true },            -- Variable names that are defined by the languages, like `this` or `self`.
@@ -135,26 +118,15 @@ function M.get(c)
 
     ["@lsp.type.boolean"]                        = "@boolean",
     ["@lsp.type.builtinType"]                    = "@type.builtin",
-    ["@lsp.type.comment"]                        = "@comment",
-    ["@lsp.type.decorator"]                      = "@attribute",
     ["@lsp.type.deriveHelper"]                   = "@attribute",
-    ["@lsp.type.enum"]                           = "@type",
-    ["@lsp.type.enumMember"]                     = "@constant",
     ["@lsp.type.escapeSequence"]                 = "@string.escape",
     ["@lsp.type.formatSpecifier"]                = "@markup.list",
     ["@lsp.type.generic"]                        = "@variable",
-    ["@lsp.type.keyword"]                        = "@keyword",
     ["@lsp.type.lifetime"]                       = "@keyword.storage",
-    ["@lsp.type.namespace"]                      = "@module",
     ["@lsp.type.namespace.python"]               = "@variable",
-    ["@lsp.type.number"]                         = "@number",
-    ["@lsp.type.operator"]                       = "@operator",
-    ["@lsp.type.parameter"]                      = "@variable.parameter",
     ["@lsp.type.parameter.lua"]                  = "@variable.parameter.lua",
-    ["@lsp.type.property"]                       = "@property",
     ["@lsp.type.selfKeyword"]                    = "@variable.builtin",
     ["@lsp.type.selfTypeKeyword"]                = "@variable.builtin",
-    ["@lsp.type.string"]                         = "@string",
     ["@lsp.type.typeAlias"]                      = "@type.definition",
     ["@lsp.type.unresolvedReference"]            = { undercurl = true, sp = c.error },
     ["@lsp.type.variable"]                       = {}, -- use treesitter styles for regular variables
