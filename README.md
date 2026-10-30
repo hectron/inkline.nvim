@@ -2,7 +2,7 @@
 
 inkline is a dark, early-2000s colorscheme for [Neovim][neovim], ported from TextMate's **vibrant-ink** theme.
 
-![original style](assets/original.png)
+![inkline styles demo](assets/demo.gif)
 
 ## Features
 
@@ -116,11 +116,14 @@ require("lualine").setup({ options = { theme = "inkline" } })
 
 ## Development
 
+`mise.toml` pins the development tools. Run `mise install` in the repo. On macOS, also run `brew install ttyd`, which `make demo` needs and mise cannot install there.
+
 ```sh
-make test       # run tests (fetches mini.nvim into .tests/ on first run)
-make snapshots  # accept intended highlight changes
-make lint       # StyLua and lua-language-server checks
-scripts/screenshots.sh  # regenerate assets/*.png (needs tmux, freeze, and perl)
+make test         # run tests (fetches mini.nvim into .tests/ on first run)
+make snapshots    # accept intended highlight changes
+make lint         # StyLua and lua-language-server checks
+make screenshots  # regenerate assets/*.png
+make demo         # regenerate assets/demo.gif from scripts/demo.tape
 ```
 
 `tests/snapshots/*.txt` records the final color of every highlight group per style. A change that alters colors shows up as a text diff there; regenerate the screenshots when it is intended.
