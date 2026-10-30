@@ -3,6 +3,6 @@
   "runtime.version": "LuaJIT",
   "workspace.library": ["$VIMRUNTIME/lua", ".tests/deps/mini.nvim/lua"],
   "workspace.checkThirdParty": false,
-  "workspace.ignoreDir": [".tests"],
+  "workspace.ignoreDir": [".tests", ".claude"],
   "diagnostics.globals": ["vim", "MiniTest"]
 }
