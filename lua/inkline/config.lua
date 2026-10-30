@@ -45,7 +45,7 @@ M.options = vim.deepcopy(M.defaults)
 ---@param opts table
 ---@return boolean ok, string? err
 function M.validate(opts)
-  return pcall(function()
+  local ok, err = pcall(function()
     vim.validate("style", opts.style, "string")
     vim.validate("dim_inactive_windows", opts.dim_inactive_windows, "boolean")
     vim.validate("transparent", opts.transparent, "boolean")
@@ -56,6 +56,7 @@ function M.validate(opts)
     vim.validate("on_colors", opts.on_colors, "function", true)
     vim.validate("on_highlights", opts.on_highlights, "function", true)
   end)
+  return ok, err and tostring(err):gsub("^.-:%d+: ", "")
 end
 
 ---Store options for later loads. Does not apply the colorscheme.
