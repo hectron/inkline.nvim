@@ -86,10 +86,10 @@ function M.get(colors, opts)
     DropBarMenuHoverSymbol     = { bold = true },
     DropBarMenuHoverEntry      = { bg = colors.dark_olive },
     DropBarMenuFloatBorder     = { bg = colors.white },
-    DropBarMenuHoverIcon       = { reverse = false },
+    DropBarMenuHoverIcon       = { link = "DropBarMenuHoverEntry" },
     DropBarCurrentContext      = { bold = true },
     DropBarCurrentContextName  = { bold = true, fg = colors.white },
-    DropBarIconUISeparatorMenu = { bold = false },
+    DropBarIconUISeparatorMenu = { link = "NormalFloat" },
 
     -- Copilot
     CopilotSuggestion          = { fg = colors.dark_grey_6, italic = true },

@@ -222,8 +222,10 @@ Directory fg=#8cf8f7
 DropBarCurrentContext bold
 DropBarCurrentContextName fg=#ffffff bold
 DropBarIconUIPickPivot fg=#ff6b6b
+DropBarIconUISeparatorMenu fg=#eceef4
 DropBarMenuFloatBorder bg=#ffffff
 DropBarMenuHoverEntry bg=#323300
+DropBarMenuHoverIcon bg=#323300
 DropBarMenuHoverSymbol bold
 EndOfBuffer fg=#4f5258
 Error fg=#eef1f8 bg=#590008
