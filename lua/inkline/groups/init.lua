@@ -1,57 +1,49 @@
+---@alias inkline.Highlight vim.api.keyset.highlight|string A highlight definition, or the name of a group to link to
+---@alias inkline.Highlights table<string, inkline.Highlight>
+
 local M = {}
 
----@param colors inkline.Palette
----@param opts? inkline.Config
-function M.setup(colors, opts)
-  opts = require("inkline.config").extend(opts)
-  local Util = require("inkline.util")
+---@type string[]
+M.plugins = {
+  "cmp",
+  "copilot",
+  "dropbar",
+  "flash",
+  "gitsigns",
+  "noice",
+  "telescope",
+  "treesitter_context",
+  "trouble",
+  "which_key",
+}
 
-  local cache_key = opts.style
-  local cache = opts.cache and Util.cache.read(cache_key)
-
-  local inputs = {
-    colors = colors,
-    options = {
-      style = opts.style,
-      transparent = opts.transparent,
-      dim_inactive_windows = opts.dim_inactive_windows,
-      vibrant_strings = opts.vibrant_strings,
-      purple_comments = opts.purple_comments,
-    },
-  }
-
-  if cache and cache.inputs and vim.deep_equal(cache.inputs, inputs) then
-    return cache.groups
-  end
-
-  local groups = {}
-  local base_groups, treesitter_groups, lsp_groups
-
-  -- Use variant-specific highlight groups for original style
-  if opts.style == "original" then
-    base_groups = require("inkline.groups.original.base").get(colors, opts)
-    treesitter_groups = require("inkline.groups.original.treesitter").get(colors, opts)
-    lsp_groups = require("inkline.groups.original.lsp").get(colors, opts)
-  else
-    -- Use modern highlight groups for other variants
-    base_groups = require("inkline.groups.base").get(colors, opts)
-    treesitter_groups = require("inkline.groups.treesitter").get(colors, opts)
-    lsp_groups = require("inkline.groups.lsp").get(colors, opts)
-  end
-
-  local function merge_tables(dest, src)
-    for k, v in pairs(src) do
-      dest[k] = v
+---@param opts inkline.ResolvedConfig
+---@return string[] module names under inkline.groups
+function M.modules(opts)
+  local style = require("inkline.colors." .. opts.style) ---@type inkline.StyleModule
+  local modules = { "editor", "syntax", style.syntax }
+  for _, plugin in ipairs(M.plugins) do
+    local enabled = opts.plugins[plugin]
+    if enabled == nil then
+      enabled = opts.plugins.default
+    end
+    if enabled then
+      modules[#modules + 1] = "plugins." .. plugin
     end
   end
-  merge_tables(groups, base_groups)
-  merge_tables(groups, treesitter_groups)
-  merge_tables(groups, lsp_groups)
+  return modules
+end
 
-  if opts.cache then
-    Util.cache.write(cache_key, { groups = groups, inputs = inputs })
+---@param c inkline.Palette
+---@param opts inkline.ResolvedConfig
+---@return inkline.Highlights
+function M.setup(c, opts)
+  local groups = {} ---@type inkline.Highlights
+  for _, name in ipairs(M.modules(opts)) do
+    for group, hl in pairs(require("inkline.groups." .. name).get(c, opts)) do
+      groups[group] = hl
+    end
   end
-
   return groups
 end
 

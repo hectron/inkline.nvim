@@ -1,0 +1,540 @@
+# nvim 0.12
+@annotation fg=#e0e2ea
+@attribute fg=#e0e2ea
+@attribute.builtin fg=#4ef2f2
+@boolean fg=#ffdd00
+@boolean.lua fg=#ff6600
+@character fg=#ffdd00
+@character.printf fg=#4ef2f2
+@character.special fg=#4ef2f2
+@comment fg=#a85cf5 italic
+@comment.documentation fg=#a85cf5 italic
+@comment.error fg=#e74c3c
+@comment.hint fg=#95a5a6
+@comment.info fg=#3498db
+@comment.note fg=#95a5a6
+@comment.todo fg=#e67e22
+@comment.warning fg=#f39c12
+@constant fg=#ffdd00
+@constant.builtin fg=#4ef2f2
+@constant.lua fg=#ffdd00
+@constant.macro fg=#ff4f3f
+@constructor fg=#ebb0ff
+@diff.delta bg=#002930
+@diff.minus fg=#ffffff bg=#6b0000
+@diff.plus bg=#004100
+@function fg=#ffbb00
+@function.builtin fg=#4ef2f2
+@function.call fg=#ffbb00
+@function.macro fg=#e0e2ea
+@function.method fg=#ffbb00
+@function.method.call fg=#ffbb00
+@keyword fg=#e65c00
+@keyword.conditional fg=#ff4f3f
+@keyword.conditional.ternary fg=#ff4f3f
+@keyword.coroutine fg=#e65c00
+@keyword.debug fg=#4ef2f2
+@keyword.directive fg=#e0e2ea
+@keyword.directive.define fg=#ff4f3f
+@keyword.exception fg=#ff4f3f
+@keyword.function fg=#ff6600
+@keyword.import fg=#fcd63a
+@keyword.modifier fg=#e65c00
+@keyword.operator fg=#beffeb
+@keyword.operator.lua fg=#ff4f3f
+@keyword.repeat fg=#ff4f3f
+@keyword.return fg=#e65c00
+@keyword.storage fg=#44fbbe
+@keyword.type fg=#e65c00
+@label fg=#ff4f3f
+@lsp.mod.deprecated sp=#ffc0b9 strikethrough
+@lsp.type.class fg=#44fbbe
+@lsp.type.comment fg=#a85cf5 italic
+@lsp.type.decorator fg=#e0e2ea
+@lsp.type.enum fg=#44fbbe
+@lsp.type.enumMember fg=#ffdd00
+@lsp.type.event fg=#44fbbe
+@lsp.type.function fg=#ffbb00
+@lsp.type.interface fg=#44fbbe
+@lsp.type.keyword fg=#e65c00
+@lsp.type.macro fg=#e0e2ea
+@lsp.type.method fg=#ffbb00
+@lsp.type.modifier fg=#e65c00
+@lsp.type.namespace fg=#fcd63a
+@lsp.type.number fg=#ffdd00
+@lsp.type.operator fg=#beffeb
+@lsp.type.parameter fg=#44fbbe
+@lsp.type.parameter.lua fg=#ff779b
+@lsp.type.property fg=#44fbbe
+@lsp.type.regexp fg=#5ef1ff
+@lsp.type.string fg=#27ae60
+@lsp.type.struct fg=#44fbbe
+@lsp.type.type fg=#44fbbe
+@lsp.type.typeParameter fg=#44fbbe
+@lsp.type.variable fg=#eceef4
+@markup.emphasis italic
+@markup.environment fg=#e0e2ea
+@markup.environment.name fg=#44fbbe
+@markup.heading fg=#e0e2ea bold
+@markup.heading.1 fg=#e0e2ea bold
+@markup.heading.1.delimiter.vimdoc sp=#ffffff nocombine underdouble
+@markup.heading.1.markdown fg=#ff6b6b bold
+@markup.heading.2 fg=#e0e2ea bold
+@markup.heading.2.delimiter.vimdoc sp=#ffffff nocombine underline
+@markup.heading.2.markdown fg=#ff8c42 bold
+@markup.heading.3 fg=#e0e2ea bold
+@markup.heading.3.markdown fg=#ffd43b bold
+@markup.heading.4 fg=#e0e2ea bold
+@markup.heading.4.markdown fg=#51cf66 bold
+@markup.heading.5 fg=#e0e2ea bold
+@markup.heading.5.markdown fg=#4dabf7 bold
+@markup.heading.6 fg=#e0e2ea bold
+@markup.heading.6.markdown fg=#e080ff bold
+@markup.italic italic
+@markup.link underline
+@markup.link.label fg=#4ef2f2
+@markup.link.label.symbol fg=#44fbbe
+@markup.link.url fg=#ff4f3f
+@markup.list fg=#44fbbe
+@markup.list.checked fg=#66ff00
+@markup.list.markdown fg=#ff6600 bold
+@markup.list.unchecked fg=#0000ff
+@markup.math fg=#4ef2f2
+@markup.raw fg=#27ae60
+@markup.raw.block fg=#27ae60
+@markup.strikethrough strikethrough
+@markup.strong bold
+@markup.underline underline
+@module fg=#fcd63a
+@module.builtin fg=#4ef2f2
+@namespace fg=#fcd63a
+@number fg=#ffdd00
+@number.float fg=#ffdd00
+@operator fg=#beffeb
+@parameter fg=#44fbbe
+@preproc fg=#e0e2ea
+@property fg=#44fbbe
+@punctuation fg=#93ffdd
+@punctuation.bracket fg=#93ffdd
+@punctuation.delimiter fg=#93ffdd
+@punctuation.special fg=#93ffdd
+@string fg=#27ae60
+@string.documentation fg=#ffff00
+@string.escape fg=#e080ff
+@string.regexp fg=#5ef1ff
+@string.special fg=#4ef2f2
+@string.special.path fg=#4ef2f2
+@string.special.symbol fg=#44fbbe
+@string.special.url fg=#ff4f3f
+@tag fg=#ff4f3f
+@tag.attribute fg=#44fbbe
+@tag.builtin fg=#4ef2f2
+@tag.delimiter fg=#93ffdd
+@type fg=#44fbbe
+@type.builtin fg=#44fbbe
+@type.definition fg=#44fbbe
+@type.qualifier fg=#e65c00
+@variable fg=#eceef4
+@variable.builtin fg=#ff779b
+@variable.member fg=#eceef4
+@variable.parameter fg=#44fbbe
+@variable.parameter.builtin fg=#69fccb
+@variable.parameter.lua fg=#ff779b
+Added fg=#66ff00
+Boolean fg=#ffdd00
+Changed fg=#4ef2f2
+Character fg=#ffdd00
+CmpItemAbbrMatch fg=#5ea1ff
+CmpItemAbbrMatchFuzzy fg=#5ea1ff
+CmpItemKind fg=#a85cf5
+ColorColumn bg=#4f5258
+Comment fg=#a85cf5 italic
+ComplHint fg=#4f5258
+ComplHintMore fg=#8cf8f7
+Conceal fg=#4f5258
+Conditional fg=#ff4f3f
+Constant fg=#ffdd00
+CopilotAnnotation fg=#8a8e96 italic
+CopilotSuggestion fg=#8a8e96 italic
+CurSearch fg=#000000 bg=#ffbd5e
+Cursor fg=#000000 bg=#ffff00
+CursorColumn bg=#2c2e33
+CursorIM fg=#000000 bg=#ffff00
+CursorLine bg=#323300
+CursorLineNr fg=#ffbd5e bold
+Debug fg=#4ef2f2
+Define fg=#ff4f3f
+Delimiter fg=#93ffdd
+DiagnosticDeprecated sp=#ffc0b9 strikethrough
+DiagnosticError fg=#ff0000
+DiagnosticFloatingError fg=#ff0000
+DiagnosticFloatingHint fg=#4ef2f2
+DiagnosticFloatingInfo fg=#5ea1ff
+DiagnosticFloatingOk fg=#b3f6c0
+DiagnosticFloatingWarn fg=#ff6600
+DiagnosticHint fg=#4ef2f2
+DiagnosticInfo fg=#5ea1ff
+DiagnosticOk fg=#b3f6c0
+DiagnosticSignError fg=#ff0000
+DiagnosticSignHint fg=#4ef2f2
+DiagnosticSignInfo fg=#5ea1ff
+DiagnosticSignOk fg=#b3f6c0
+DiagnosticSignWarn fg=#ff6600
+DiagnosticUnderlineError sp=#ffc0b9 underline
+DiagnosticUnderlineHint sp=#a6dbff underline
+DiagnosticUnderlineInfo sp=#8cf8f7 underline
+DiagnosticUnderlineOk sp=#b3f6c0 underline
+DiagnosticUnderlineWarn sp=#fce094 underline
+DiagnosticUnnecessary fg=#7b8496 italic
+DiagnosticVirtualLinesError fg=#ff0000
+DiagnosticVirtualLinesHint fg=#4ef2f2
+DiagnosticVirtualLinesInfo fg=#5ea1ff
+DiagnosticVirtualLinesOk fg=#b3f6c0
+DiagnosticVirtualLinesWarn fg=#ff6600
+DiagnosticVirtualTextError fg=#ff0000
+DiagnosticVirtualTextHint fg=#4ef2f2
+DiagnosticVirtualTextInfo fg=#5ea1ff
+DiagnosticVirtualTextOk fg=#b3f6c0
+DiagnosticVirtualTextWarn fg=#ff6600
+DiagnosticWarn fg=#ff6600
+DiffAdd bg=#004100
+DiffChange bg=#002930
+DiffDelete fg=#ffffff bg=#6b0000
+DiffText bg=#004747
+DiffTextAdd bg=#004747
+Directory fg=#8cf8f7
+DropBarCurrentContext bold
+DropBarCurrentContextName fg=#ffffff bold
+DropBarIconUIPickPivot fg=#ff0000
+DropBarIconUISeparatorMenu fg=#eceef4
+DropBarMenuFloatBorder bg=#ffffff
+DropBarMenuHoverEntry bg=#323300
+DropBarMenuHoverIcon bg=#323300
+DropBarMenuHoverSymbol bold
+EndOfBuffer fg=#4f5258
+Error fg=#eef1f8 bg=#590008
+ErrorMsg fg=#ffc0b9
+Exception fg=#ff4f3f
+FlashLabel fg=#ffff00 bold
+FlashMatch fg=#5ea1ff bold
+Float fg=#ffdd00
+FloatBorder fg=#6b6f78
+FloatFooter fg=#ffff00 bold
+FloatShadow bg=#4f5258
+FloatShadowThrough bg=#4f5258
+FloatTitle fg=#ffff00 bold
+Folded fg=#9b9ea4 bg=#07080d
+Function fg=#ffbb00
+GitSignsAdd fg=#66ff00
+GitSignsAddInline fg=#ffffff bg=#228b22
+GitSignsChange fg=#4ef2f2
+GitSignsChangeInline fg=#ffffff bg=#228b22
+GitSignsCurrentLineBlame fg=#6b6f78
+GitSignsDelete fg=#ff0000
+GitSignsDeleteInline fg=#ffffff bg=#b22222
+Identifier fg=#44fbbe
+Ignore fg=#ffffff
+IncSearch fg=#000000 bg=#ffbd5e
+Include fg=#fcd63a
+Keyword fg=#ff4f3f
+Label fg=#ff4f3f
+LineNr fg=#6b6f78
+LineNrAbove fg=#6b6f78
+LineNrBelow fg=#6b6f78
+LspCodeLens fg=#4f5258
+LspCodeLensSeparator fg=#4f5258
+LspInlayHint fg=#4f5258
+LspReferenceRead bg=#264f78
+LspReferenceTarget bg=#264f78
+LspReferenceText bg=#264f78
+LspReferenceWrite bg=#264f78
+LspSignatureActiveParameter bg=#3c4048
+Macro fg=#e0e2ea
+MatchParen fg=#66ff00 bold
+MiniTestEmphasis bold default
+MiniTestFail fg=#ff0000 bold default
+MiniTestPass fg=#66ff00 bold default
+ModeMsg fg=#b3f6c0
+MoreMsg fg=#8cf8f7
+NoiceCmdlineIcon fg=#fcd63a
+NoiceCmdlineIconSearch fg=#5ea1ff
+NoiceCmdlinePopupBorder fg=#fcd63a
+NoiceCmdlinePopupBorderSearch fg=#5ea1ff
+NonText fg=#4f5258
+Normal fg=#ffffff
+NormalFloat fg=#eceef4
+NormalNC fg=#ffffff
+Number fg=#ffdd00
+NvimAnd fg=#e0e2ea
+NvimArrow fg=#93ffdd
+NvimAssignment fg=#e0e2ea
+NvimAssignmentWithAddition fg=#e0e2ea
+NvimAssignmentWithConcatenation fg=#e0e2ea
+NvimAssignmentWithSubtraction fg=#e0e2ea
+NvimAugmentedAssignment fg=#e0e2ea
+NvimBinaryMinus fg=#e0e2ea
+NvimBinaryOperator fg=#e0e2ea
+NvimBinaryPlus fg=#e0e2ea
+NvimCallingParenthesis fg=#93ffdd
+NvimColon fg=#93ffdd
+NvimComma fg=#93ffdd
+NvimComparison fg=#e0e2ea
+NvimComparisonModifier fg=#e0e2ea
+NvimConcat fg=#e0e2ea
+NvimConcatOrSubscript fg=#e0e2ea
+NvimContainer fg=#93ffdd
+NvimCurly fg=#93ffdd
+NvimDict fg=#93ffdd
+NvimDivision fg=#e0e2ea
+NvimDoubleQuote fg=#27ae60
+NvimDoubleQuotedBody fg=#27ae60
+NvimDoubleQuotedEscape fg=#4ef2f2
+NvimDoubleQuotedUnknownEscape fg=#eef1f8 bg=#590008
+NvimEnvironmentName fg=#44fbbe
+NvimEnvironmentSigil fg=#44fbbe
+NvimFigureBrace fg=#ff0000 bg=#ff0000
+NvimFloat fg=#ffdd00
+NvimIdentifier fg=#44fbbe
+NvimIdentifierKey fg=#44fbbe
+NvimIdentifierName fg=#44fbbe
+NvimIdentifierScope fg=#44fbbe
+NvimIdentifierScopeDelimiter fg=#44fbbe
+NvimInternalError fg=#ff0000 bg=#ff0000
+NvimInvalid fg=#eef1f8 bg=#590008
+NvimInvalidAnd fg=#eef1f8 bg=#590008
+NvimInvalidArrow fg=#eef1f8 bg=#590008
+NvimInvalidAssignment fg=#eef1f8 bg=#590008
+NvimInvalidAssignmentWithAddition fg=#eef1f8 bg=#590008
+NvimInvalidAssignmentWithConcatenation fg=#eef1f8 bg=#590008
+NvimInvalidAssignmentWithSubtraction fg=#eef1f8 bg=#590008
+NvimInvalidAugmentedAssignment fg=#eef1f8 bg=#590008
+NvimInvalidBinaryMinus fg=#eef1f8 bg=#590008
+NvimInvalidBinaryOperator fg=#eef1f8 bg=#590008
+NvimInvalidBinaryPlus fg=#eef1f8 bg=#590008
+NvimInvalidCallingParenthesis fg=#eef1f8 bg=#590008
+NvimInvalidColon fg=#eef1f8 bg=#590008
+NvimInvalidComma fg=#eef1f8 bg=#590008
+NvimInvalidComparison fg=#eef1f8 bg=#590008
+NvimInvalidComparisonModifier fg=#eef1f8 bg=#590008
+NvimInvalidConcat fg=#eef1f8 bg=#590008
+NvimInvalidConcatOrSubscript fg=#eef1f8 bg=#590008
+NvimInvalidContainer fg=#eef1f8 bg=#590008
+NvimInvalidCurly fg=#eef1f8 bg=#590008
+NvimInvalidDelimiter fg=#eef1f8 bg=#590008
+NvimInvalidDict fg=#eef1f8 bg=#590008
+NvimInvalidDivision fg=#eef1f8 bg=#590008
+NvimInvalidDoubleQuote fg=#eef1f8 bg=#590008
+NvimInvalidDoubleQuotedBody fg=#27ae60
+NvimInvalidDoubleQuotedEscape fg=#4ef2f2
+NvimInvalidDoubleQuotedUnknownEscape fg=#eef1f8 bg=#590008
+NvimInvalidEnvironmentName fg=#eef1f8 bg=#590008
+NvimInvalidEnvironmentSigil fg=#eef1f8 bg=#590008
+NvimInvalidFigureBrace fg=#eef1f8 bg=#590008
+NvimInvalidFloat fg=#eef1f8 bg=#590008
+NvimInvalidIdentifier fg=#eef1f8 bg=#590008
+NvimInvalidIdentifierKey fg=#eef1f8 bg=#590008
+NvimInvalidIdentifierName fg=#eef1f8 bg=#590008
+NvimInvalidIdentifierScope fg=#eef1f8 bg=#590008
+NvimInvalidIdentifierScopeDelimiter fg=#eef1f8 bg=#590008
+NvimInvalidLambda fg=#eef1f8 bg=#590008
+NvimInvalidList fg=#eef1f8 bg=#590008
+NvimInvalidMod fg=#eef1f8 bg=#590008
+NvimInvalidMultiplication fg=#eef1f8 bg=#590008
+NvimInvalidNestingParenthesis fg=#eef1f8 bg=#590008
+NvimInvalidNot fg=#eef1f8 bg=#590008
+NvimInvalidNumber fg=#eef1f8 bg=#590008
+NvimInvalidNumberPrefix fg=#eef1f8 bg=#590008
+NvimInvalidOperator fg=#eef1f8 bg=#590008
+NvimInvalidOptionName fg=#eef1f8 bg=#590008
+NvimInvalidOptionScope fg=#eef1f8 bg=#590008
+NvimInvalidOptionScopeDelimiter fg=#eef1f8 bg=#590008
+NvimInvalidOptionSigil fg=#eef1f8 bg=#590008
+NvimInvalidOr fg=#eef1f8 bg=#590008
+NvimInvalidParenthesis fg=#eef1f8 bg=#590008
+NvimInvalidPlainAssignment fg=#eef1f8 bg=#590008
+NvimInvalidRegister fg=#eef1f8 bg=#590008
+NvimInvalidSingleQuote fg=#eef1f8 bg=#590008
+NvimInvalidSingleQuotedBody fg=#27ae60
+NvimInvalidSingleQuotedQuote fg=#4ef2f2
+NvimInvalidSingleQuotedUnknownEscape fg=#ff0000 bg=#ff0000
+NvimInvalidSpacing fg=#ffc0b9
+NvimInvalidString fg=#eef1f8 bg=#590008
+NvimInvalidStringBody fg=#27ae60
+NvimInvalidStringQuote fg=#eef1f8 bg=#590008
+NvimInvalidStringSpecial fg=#4ef2f2
+NvimInvalidSubscript fg=#eef1f8 bg=#590008
+NvimInvalidSubscriptBracket fg=#eef1f8 bg=#590008
+NvimInvalidSubscriptColon fg=#eef1f8 bg=#590008
+NvimInvalidTernary fg=#eef1f8 bg=#590008
+NvimInvalidTernaryColon fg=#eef1f8 bg=#590008
+NvimInvalidUnaryMinus fg=#eef1f8 bg=#590008
+NvimInvalidUnaryOperator fg=#eef1f8 bg=#590008
+NvimInvalidUnaryPlus fg=#eef1f8 bg=#590008
+NvimInvalidValue fg=#eef1f8 bg=#590008
+NvimLambda fg=#93ffdd
+NvimList fg=#93ffdd
+NvimMod fg=#e0e2ea
+NvimMultiplication fg=#e0e2ea
+NvimNestingParenthesis fg=#93ffdd
+NvimNot fg=#e0e2ea
+NvimNumber fg=#ffdd00
+NvimNumberPrefix fg=#44fbbe
+NvimOperator fg=#e0e2ea
+NvimOptionName fg=#44fbbe
+NvimOptionScope fg=#44fbbe
+NvimOptionScopeDelimiter fg=#44fbbe
+NvimOptionSigil fg=#44fbbe
+NvimOr fg=#e0e2ea
+NvimParenthesis fg=#93ffdd
+NvimPlainAssignment fg=#e0e2ea
+NvimRegister fg=#4ef2f2
+NvimSingleQuote fg=#27ae60
+NvimSingleQuotedBody fg=#27ae60
+NvimSingleQuotedQuote fg=#4ef2f2
+NvimSingleQuotedUnknownEscape fg=#ff0000 bg=#ff0000
+NvimSpacing fg=#ffffff
+NvimString fg=#27ae60
+NvimStringBody fg=#27ae60
+NvimStringQuote fg=#27ae60
+NvimStringSpecial fg=#4ef2f2
+NvimSubscript fg=#93ffdd
+NvimSubscriptBracket fg=#93ffdd
+NvimSubscriptColon fg=#93ffdd
+NvimTernary fg=#e0e2ea
+NvimTernaryColon fg=#e0e2ea
+NvimUnaryMinus fg=#e0e2ea
+NvimUnaryOperator fg=#e0e2ea
+NvimUnaryPlus fg=#e0e2ea
+OkMsg fg=#b3f6c0
+Operator fg=#e0e2ea
+Pmenu bg=#2c2e33
+PmenuBorder bg=#2c2e33
+PmenuExtra bg=#2c2e33
+PmenuExtraSel bg=#3c4048
+PmenuKind bg=#2c2e33
+PmenuKindSel bg=#3c4048
+PmenuMatch bold
+PmenuMatchSel bold
+PmenuSbar bg=#2c2e33
+PmenuSel bg=#3c4048
+PmenuShadow bg=#4f5258
+PmenuShadowThrough bg=#4f5258
+PmenuThumb bg=#4f5258
+PreCondit fg=#e0e2ea
+PreInsert fg=#66ff00
+PreProc fg=#e0e2ea
+Question fg=#8cf8f7
+QuickFixLine fg=#8cf8f7
+RedrawDebugClear bg=#6b5300
+RedrawDebugComposed bg=#005523
+RedrawDebugNormal reverse
+RedrawDebugRecompose bg=#590008
+Removed fg=#ff0000
+Repeat fg=#ff4f3f
+Search fg=#000000 bg=#5ea1ff
+SnippetTabstop bg=#3c4048
+SnippetTabstopActive bg=#3c4048
+Special fg=#4ef2f2
+SpecialChar fg=#4ef2f2
+SpecialComment fg=#4ef2f2
+SpecialKey fg=#4ef2f2
+SpellBad sp=#ffc0b9 undercurl
+SpellCap sp=#fce094 undercurl
+SpellLocal sp=#b3f6c0 undercurl
+SpellRare sp=#8cf8f7 undercurl
+Statement fg=#ff4f3f
+StatusLineNC fg=#c4c6cd bg=#2c2e33
+StatusLineTermNC fg=#c4c6cd bg=#2c2e33
+StderrMsg fg=#ffc0b9
+StorageClass fg=#44fbbe
+String fg=#27ae60
+Structure fg=#44fbbe
+Substitute fg=#000000 bg=#5ea1ff
+TabLine fg=#c4c6cd bg=#2c2e33
+TabLineFill fg=#c4c6cd bg=#2c2e33
+TabLineSel bold
+Tag fg=#4ef2f2
+TelescopeNormal fg=#ffffff
+TelescopeSelection fg=#ffffff bg=#3c4048
+TermCursor reverse
+Title fg=#e0e2ea bold
+Todo fg=#e0e2ea bold
+TreesitterContext fg=#7b8496
+TreesitterContextBottom sp=#4c566a underline
+TroubleCount fg=#ffff00 bg=#3c4048 bold
+TroubleDirectory fg=#5ea1ff
+TroubleFilename fg=#5ea1ff
+TroubleIndent fg=#393f4a
+TroubleNormalNC fg=#ffffff
+Type fg=#44fbbe
+Typedef fg=#44fbbe
+Underlined underline
+VertSplit fg=#ffffff
+Visual bg=#3c4048
+VisualNOS bg=#3c4048
+WarningMsg fg=#fce094
+WhichKey fg=#ffff00 bold
+WhichKeyBorder fg=#6b6f78
+WhichKeyDesc fg=#eceef4
+WhichKeyFloatBorder fg=#6b6f78
+WhichKeyFloatTitle fg=#ffff00 bold
+WhichKeyGroup fg=#4ef2f2
+WhichKeyIcon fg=#ffff00
+WhichKeyIconAzure fg=#5ea1ff
+WhichKeyIconBlue fg=#0000ff
+WhichKeyIconCyan fg=#5ef1ff
+WhichKeyIconGreen fg=#66ff00
+WhichKeyIconGrey fg=#7b8496
+WhichKeyIconOrange fg=#ff6600
+WhichKeyIconPurple fg=#a85cf5
+WhichKeyIconRed fg=#ff0000
+WhichKeyIconYellow fg=#ffff00
+WhichKeySeparator fg=#6b6f78
+WhichKeySeperator fg=#6b6f78
+WhichKeyTitle fg=#ffff00 bold
+WhichKeyValue fg=#66ff00
+Whitespace fg=#4f5258
+WildMenu bg=#3c4048
+WinBar fg=#ffffff
+WinBarNC fg=#9b9ea4 bg=#07080d
+WinSeparator fg=#ffffff
+diffAdded fg=#27ae60
+diffLine fg=#e0e2ea
+diffRemoved fg=#ff4f3f
+diffSubname fg=#a85cf5 italic
+gitcommitBranch fg=#ff6600 bold
+gitcommitComment fg=#6b6f78
+gitcommitDiscarded fg=#6b6f78
+gitcommitDiscardedFile fg=#ff0000 bold
+gitcommitDiscardedType fg=#0000ff
+gitcommitHeader fg=#a85cf5
+gitcommitOverflow fg=#ff0000
+gitcommitSelected fg=#6b6f78
+gitcommitSelectedFile fg=#66ff00 bold
+gitcommitSelectedType fg=#0000ff
+gitcommitSummary fg=#0000ff
+gitcommitUnmergedFile fg=#ff0000 bold
+gitcommitUnmergedType fg=#0000ff
+gitcommitUntracked fg=#6b6f78
+gitcommitUntrackedFile fg=#ffff00
+lCursor bg=#ffffff
+rubyInterpolation fg=#ffffff
+rubyPseudoVariable fg=#4ef2f2
+rubyStringDelimiter fg=#66ff00
+rubySymbol fg=#4ef2f2
+terminal_color_0 #24272e
+terminal_color_1 #ff0000
+terminal_color_2 #66ff00
+terminal_color_3 #ffff00
+terminal_color_4 #5ea1ff
+terminal_color_5 #a85cf5
+terminal_color_6 #5ef1ff
+terminal_color_7 #eceef4
+terminal_color_8 #6b6f78
+terminal_color_9 #ff4f3f
+terminal_color_10 #5eff6c
+terminal_color_11 #fcd63a
+terminal_color_12 #86b9ff
+terminal_color_13 #e080ff
+terminal_color_14 #86f5ff
+terminal_color_15 #ffffff

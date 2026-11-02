@@ -1,2 +1,1 @@
-return require("lualine.themes.inkline")
-
+return require("inkline.lualine").theme("retro")

@@ -8,71 +8,90 @@ local M = {}
 ---@field transparent? boolean
 ---@field purple_comments? boolean
 ---@field vibrant_strings? boolean
----@field cache? boolean
----@field on_colors? fun(colors: table): table
----@field on_highlights? fun(highlights: table, colors: table): table
+---@field terminal_colors? boolean
+---@field plugins? boolean|table<string, boolean> `default` sets every plugin; plugin names override it. A boolean sets `default`.
+---@field cache? boolean Deprecated and ignored
+---@field on_colors? fun(colors: inkline.Palette): inkline.Palette?
+---@field on_highlights? fun(highlights: inkline.Highlights, colors: inkline.Palette): inkline.Highlights?
 
----@class inkline.Cache
----@field groups table<string, vim.api.keyset.highlight>
----@field inputs inkline.CacheInputs
+---@class inkline.ResolvedConfig : inkline.Config
+---@field style inkline.Style
+---@field dim_inactive_windows boolean
+---@field transparent boolean
+---@field purple_comments boolean
+---@field vibrant_strings boolean
+---@field terminal_colors boolean
+---@field plugins table<string, boolean>
 
----@class inkline.CacheInputs
----@field colors table
----@field options inkline.Config
+---@type inkline.Style[]
+M.styles = { "original", "retro", "cyberpunk" }
+
+---@type inkline.ResolvedConfig
 M.defaults = {
   style = "original",
   dim_inactive_windows = true,
   transparent = false,
   purple_comments = false,
   vibrant_strings = true,
-  cache = true,
+  terminal_colors = true,
+  plugins = { default = true },
   on_colors = nil,
   on_highlights = nil,
 }
 
----@type inkline.Config
-M.options = nil
+---@type inkline.ResolvedConfig
+M.options = vim.deepcopy(M.defaults)
 
+---Whether setup() was given `dim_inactive_windows = true` explicitly, which also dims on focus loss
+M.dim_on_focus_lost = false
+
+---@param opts table
+---@return boolean ok, string? err
+function M.validate(opts)
+  local ok, err = pcall(function()
+    vim.validate("style", opts.style, "string")
+    vim.validate("dim_inactive_windows", opts.dim_inactive_windows, "boolean")
+    vim.validate("transparent", opts.transparent, "boolean")
+    vim.validate("purple_comments", opts.purple_comments, "boolean")
+    vim.validate("vibrant_strings", opts.vibrant_strings, "boolean")
+    vim.validate("terminal_colors", opts.terminal_colors, "boolean")
+    vim.validate("plugins", opts.plugins, { "table", "boolean" })
+    vim.validate("on_colors", opts.on_colors, "function", true)
+    vim.validate("on_highlights", opts.on_highlights, "function", true)
+  end)
+  return ok, err and tostring(err):gsub("^.-:%d+: ", "")
+end
+
+---Store options for later loads. Does not apply the colorscheme.
 ---@param options? inkline.Config
 function M.setup(options)
   M.options = vim.tbl_deep_extend("force", {}, M.defaults, options or {})
-
-  vim.api.nvim_create_autocmd("BufEnter", {
-    callback = function()
-      -- These need to be applied on each buffer enter event
-      vim.api.nvim_set_hl(0, "DropBarIconUISeparatorMenu", {})
-      vim.api.nvim_set_hl(0, "DropBarMenuHoverIcon", { reverse = false })
-    end,
-  })
-  if options.dim_inactive_windows then
-    local colors = require("inkline.colors").setup(options)
-
-    vim.api.nvim_create_autocmd("FocusLost", {
-      callback = function()
-        vim.api.nvim_set_hl(0, "Normal", { bg = colors.bg_alt })
-        vim.api.nvim_set_hl(0, "WinBar", { bg = colors.bg_alt })
-      end,
-    })
-    vim.api.nvim_create_autocmd("FocusGained", {
-      callback = function()
-        vim.api.nvim_set_hl(0, "Normal", { bg = colors.bg })
-        vim.api.nvim_set_hl(0, "WinBar", { bg = colors.bg })
-      end,
-    })
+  M.dim_on_focus_lost = options ~= nil and options.dim_inactive_windows == true
+  local ok, err = M.validate(M.options)
+  if not ok then
+    vim.notify("inkline.nvim: " .. err, vim.log.levels.ERROR)
   end
 end
 
+---Options from setup() with per-load overrides applied.
 ---@param options? inkline.Config
+---@return inkline.ResolvedConfig
 function M.extend(options)
-  return options and vim.tbl_deep_extend("force", {}, M.options, options) or M.options
+  local opts = vim.tbl_deep_extend("force", {}, M.options, options or {})
+  if type(opts.plugins) == "boolean" then
+    opts.plugins = { default = opts.plugins }
+  end
+  if not vim.tbl_contains(M.styles, opts.style) then
+    vim.notify(
+      ('inkline.nvim: unknown style %q, using "original". Available: %s'):format(
+        tostring(opts.style),
+        table.concat(M.styles, ", ")
+      ),
+      vim.log.levels.WARN
+    )
+    opts.style = "original"
+  end
+  return opts
 end
-
-setmetatable(M, {
-  __index = function(_, k)
-    if k == "options" then
-      return M.defaults
-    end
-  end,
-})
 
 return M

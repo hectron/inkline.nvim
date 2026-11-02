@@ -2,54 +2,99 @@ local config = require("inkline.config")
 
 local M = {}
 
+---Dim Normal and WinBar while Neovim is unfocused, e.g. in an inactive tmux pane.
+---@param colors inkline.Palette
+local function dim_on_focus_lost(colors)
+  local group = vim.api.nvim_create_augroup("inkline", { clear = true })
+  local saved ---@type table<string, vim.api.keyset.get_hl_info>?
+
+  vim.api.nvim_create_autocmd("FocusLost", {
+    group = group,
+    callback = function()
+      if saved then
+        return
+      end
+      saved = {}
+      for _, name in ipairs({ "Normal", "WinBar" }) do
+        saved[name] = vim.api.nvim_get_hl(0, { name = name })
+        vim.api.nvim_set_hl(0, name, vim.tbl_extend("force", saved[name], { bg = colors.bg_alt }))
+      end
+    end,
+  })
+  vim.api.nvim_create_autocmd("FocusGained", {
+    group = group,
+    callback = function()
+      for name, hl in pairs(saved or {}) do
+        vim.api.nvim_set_hl(0, name, hl --[[@as vim.api.keyset.highlight]])
+      end
+      saved = nil
+    end,
+  })
+  vim.api.nvim_create_autocmd("ColorSchemePre", {
+    group = group,
+    callback = function()
+      vim.api.nvim_del_augroup_by_id(group)
+    end,
+  })
+end
+
 ---@param opts? inkline.Config
 function M.load(opts)
-  opts = require("inkline.config").extend(opts)
+  opts = config.extend(opts)
 
-  -- "compile" the theme
-  local highlight_groups = require("inkline.theme").setup(opts)
+  local highlights, colors = require("inkline.theme").setup(opts)
 
-  if vim.g.colors_name then
-    vim.cmd("hi clear")
-  end
-
+  vim.cmd("hi clear")
+  vim.o.background = "dark"
   vim.o.termguicolors = true
   vim.g.colors_name = "inkline-" .. opts.style
 
-  for group, hl in pairs(highlight_groups) do
-    hl = type(hl) == "string" and { link = hl } or hl
+  for group, hl in pairs(highlights) do
+    if type(hl) == "string" then
+      hl = { link = hl }
+    end
     vim.api.nvim_set_hl(0, group, hl)
+  end
+
+  if opts.dim_inactive_windows and config.dim_on_focus_lost then
+    dim_on_focus_lost(colors)
+  else
+    pcall(vim.api.nvim_del_augroup_by_name, "inkline")
+  end
+
+  if opts.terminal_colors then
+    for i, color in ipairs(require("inkline.colors").terminal(colors)) do
+      vim.g["terminal_color_" .. (i - 1)] = color
+    end
   end
 end
 
 M.setup = config.setup
 
--- Expose available styles
 ---@return inkline.Style[]
 function M.get_styles()
-  return require("inkline.colors").styles
+  return config.styles
 end
 
--- Function to switch styles at runtime
 ---@param style inkline.Style
 function M.switch_style(style)
-  local colors_module = require("inkline.colors")
-  if not vim.tbl_contains(colors_module.styles, style) then
-    vim.notify("inkline.nvim: Unknown style '" .. style .. "'. Available: " .. table.concat(colors_module.styles, ", "),
-      vim.log.levels.ERROR)
+  if not vim.tbl_contains(config.styles, style) then
+    vim.notify(
+      "inkline.nvim: Unknown style '" .. style .. "'. Available: " .. table.concat(config.styles, ", "),
+      vim.log.levels.ERROR
+    )
     return
   end
 
-  -- Update config and reload
   config.options.style = style
-  M.load(config.options)
-  vim.notify("inkline.nvim: Switched to style '" .. style .. "'", vim.log.levels.INFO)
+  vim.cmd.colorscheme("inkline-" .. style)
 end
 
----Clear the cache for all styles
+---@deprecated inkline no longer caches highlights. Removes files left by older versions.
 function M.clear_cache()
-  require("inkline.util").cache.clear()
-  vim.notify("inkline.nvim: Cache cleared", vim.log.levels.INFO)
+  for _, style in ipairs(config.styles) do
+    vim.uv.fs_unlink(vim.fn.stdpath("cache") .. "/inkline-" .. style .. ".json")
+  end
 end
 
 return M

@@ -1,10 +1,4 @@
--- Original variant lualine theme (matches main branch exactly)
-local function get_inkline_colors()
-  local colors, _ = require("inkline.colors").setup({ style = "original" })
-  return colors
-end
-
-local colors = get_inkline_colors()
+local colors = require("inkline.colors").setup({ style = "original" })
 
 return {
   normal = {
@@ -45,4 +39,3 @@ return {
     c = { fg = colors.dark_grey_5, bg = colors.bg_alt },
   },
 }
-

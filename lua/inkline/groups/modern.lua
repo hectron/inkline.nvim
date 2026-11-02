@@ -1,21 +1,40 @@
+-- Syntax for styles driven by palette roles (retro, cyberpunk)
 local Util = require("inkline.util")
 
 local M = {}
 
-function M.get(c, opts)
-  local property_mapping = require("inkline.colors.property_mapping")
-  local property_color = property_mapping.get_property_color(opts.style, c)
-
+---@param c inkline.Palette
+---@return inkline.Highlights
+function M.get(c)
   -- stylua: ignore
-  local ret = {
+  return {
+    diffAdded                  = { fg = c.green, bold = true },
+    diffRemoved                = { fg = c.red, bold = true },
+    diffChanged                = { fg = c.yellow, bold = true },
+    diffLine                   = { fg = c.cyan, bold = true },
+    diffSubname                = { fg = c.purple, italic = true },
+    diffFile                   = { fg = c.light_blue, bold = true },
+    diffNewFile                = { fg = c.green, bold = true },
+    diffOldFile                = { fg = c.red, bold = true },
+
+    gitcommitSummary           = { fg = c.light_blue, bold = true, underline = true },
+    gitcommitOverflow          = { fg = c.red, bold = true, reverse = true },
+    gitcommitComment           = { fg = c.comment, italic = true },
+    gitcommitUntracked         = { fg = c.dark_grey_5 },
+    gitcommitDiscarded         = { fg = c.red },
+    gitcommitSelected          = { fg = c.green },
+    gitcommitUnmerged          = { fg = c.yellow },
+    gitcommitOnBranch          = { fg = c.cyan },
+    gitcommitBranch            = { fg = c.purple, bold = true },
+    gitcommitNoBranch          = { fg = c.red, bold = true },
+    gitcommitHeader            = { fg = c.light_blue, bold = true },
+    gitcommitFirst             = { fg = c.light_blue, bold = true, underline = true },
+
     ["@annotation"]                   = "PreProc",
     ["@attribute"]                    = "PreProc",
-    ["@boolean"]                      = "Boolean",
     ["@boolean.lua"]                  = { fg = c.orange },
-    ["@character"]                    = "Character",
     ["@character.printf"]             = "SpecialChar",
-    ["@character.special"]            = "SpecialChar",
-    ["@comment"]                      = { fg = opts.purple_comments and c.purple or c.dark_grey_5, italic = true },
+    ["@comment"]                      = { fg = c.comment, italic = true },
     ["@comment.error"]                = { fg = c.error },
     ["@comment.hint"]                 = { fg = c.hint },
     ["@comment.info"]                 = { fg = c.info },
@@ -24,7 +43,6 @@ function M.get(c, opts)
     ["@comment.warning"]              = { fg = c.warning },
     ["@constant"]                     = { fg = c.constant_color },
     ["@constant.lua"]                 = { fg = c.constant_color },
-    ["@constant.builtin"]             = "Special",
     ["@constant.macro"]               = "Define",
     ["@constructor"]                  = { fg = c.purple_3 }, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
     ["@diff.delta"]                   = { fg = c.yellow, bold = true },
@@ -32,23 +50,13 @@ function M.get(c, opts)
     ["@diff.plus"]                    = { fg = c.green, bold = true },
     ["@function"]                     = { fg = c.function_color },
     ["@function.builtin"]             = { fg = c.function_color, bold = true },
-    ["@function.call"]                = { fg = c.function_color },
     ["@function.macro"]               = { fg = c.function_color, italic = true },
-    ["@function.method"]              = { fg = c.function_color },
-    ["@function.method.call"]         = { fg = c.function_color },
     ["@keyword"]                      = { fg = c.keyword }, -- For keywords that don't fall in previous categories.
-    ["@keyword.conditional"]          = { fg = c.keyword },
-    ["@keyword.coroutine"]            = { fg = c.keyword },
-    ["@keyword.debug"]                = { fg = c.keyword },
-    ["@keyword.directive"]            = { fg = c.keyword },
-    ["@keyword.directive.define"]     = { fg = c.keyword },
-    ["@keyword.exception"]            = { fg = c.keyword },
     ["@keyword.function"]             = { fg = c.keyword }, -- For keywords used to define a function.
     ["@keyword.import"]               = "Include",
     ["@keyword.operator"]             = "@operator",
     ["@keyword.operator.lua"]         = "Statement",
     ["@keyword.repeat"]               = "Repeat",
-    ["@keyword.return"]               = "@keyword",
     ["@keyword.storage"]              = "StorageClass",
     ["@label"]                        = { fg = c.light_blue }, -- For labels: `label:` in C and `:label:` in Lua.
     ["@markup"]                       = "@none",
@@ -82,10 +90,8 @@ function M.get(c, opts)
     ["@module.builtin"]               = { fg = c.red }, -- Variable names that are defined by the languages, like `this` or `self`.
     ["@namespace.builtin"]            = "@variable.builtin",
     ["@none"]                         = {},
-    ["@number"]                       = "Number",
-    ["@number.float"]                 = "Float",
     ["@operator"]                     = { fg = Util.blend_fg(c.blue_green_2, 0.6) }, -- For any operator: `+`, but also `->` and `*` in C.
-    ["@property"]                     = { fg = property_color },
+    ["@property"]                     = { fg = c.property },
     ["@punctuation.bracket"]          = { fg = c.dark_white },                       -- For brackets and parens.
     ["@punctuation.delimiter"]        = { fg = c.blue_green_2 },                     -- For delimiters ie: `.`
     ["@punctuation.special"]          = { fg = c.blue_green_2 },                     -- For special symbols (e.g. `{}` in string interpolation)
@@ -99,7 +105,6 @@ function M.get(c, opts)
     ["@tag.delimiter"]                = { fg = c.blue_green_2 },
     ["@type"]                         = { fg = c.type_color },
     ["@type.ruby"]                    = { fg = c.type_color },
-    ["@type.definition"]              = { fg = c.type_color },
     ["@type.qualifier"]               = { fg = c.keyword },
     ["@variable"]                     = { fg = c.variable_color },                 -- Any variable name that does not have another highlight.
     ["@variable.builtin"]             = { fg = c.pink, italic = true },            -- Variable names that are defined by the languages, like `this` or `self`.
@@ -108,12 +113,42 @@ function M.get(c, opts)
     ["@variable.parameter.lua"]       = { fg = c.pink },
 
     -- Git commit specific highlights
-    ["@comment.gitcommit"]            = { fg = opts.purple_comments and c.purple or c.dark_grey_5, italic = true },
+    ["@comment.gitcommit"]            = { fg = c.comment, italic = true },
     ["@string.gitcommit"]             = { fg = c.string_color },
     ["@keyword.gitcommit"]            = { fg = c.keyword },
-  }
 
-  return ret
+    ["@lsp.type.boolean"]                        = "@boolean",
+    ["@lsp.type.builtinType"]                    = "@type.builtin",
+    ["@lsp.type.deriveHelper"]                   = "@attribute",
+    ["@lsp.type.escapeSequence"]                 = "@string.escape",
+    ["@lsp.type.formatSpecifier"]                = "@markup.list",
+    ["@lsp.type.generic"]                        = "@variable",
+    ["@lsp.type.lifetime"]                       = "@keyword.storage",
+    ["@lsp.type.namespace.python"]               = "@variable",
+    ["@lsp.type.parameter.lua"]                  = "@variable.parameter.lua",
+    ["@lsp.type.selfKeyword"]                    = "@variable.builtin",
+    ["@lsp.type.selfTypeKeyword"]                = "@variable.builtin",
+    ["@lsp.type.typeAlias"]                      = "@type.definition",
+    ["@lsp.type.unresolvedReference"]            = { undercurl = true, sp = c.error },
+    ["@lsp.type.variable"]                       = {}, -- use treesitter styles for regular variables
+    ["@lsp.typemod.class.defaultLibrary"]        = "@type.builtin",
+    ["@lsp.typemod.enum.defaultLibrary"]         = "@type.builtin",
+    ["@lsp.typemod.enumMember.defaultLibrary"]   = "@constant.builtin",
+    ["@lsp.typemod.function.defaultLibrary"]     = "@function.builtin",
+    ["@lsp.typemod.function.defaultLibrary.lua"] = { fg = c.gold },
+    ["@lsp.typemod.keyword.async"]               = "@keyword.coroutine",
+    ["@lsp.typemod.keyword.injected"]            = "@keyword",
+    ["@lsp.typemod.macro.defaultLibrary"]        = "@function.builtin",
+    ["@lsp.typemod.method.defaultLibrary"]       = "@function.builtin",
+    ["@lsp.typemod.operator.injected"]           = "@operator",
+    ["@lsp.typemod.parameter.declaration.lua"]   = "@variable.parameter.lua",
+    ["@lsp.typemod.string.injected"]             = "@string",
+    ["@lsp.typemod.struct.defaultLibrary"]       = "@type.builtin",
+    ["@lsp.typemod.variable.callable"]           = "@function",
+    ["@lsp.typemod.variable.defaultLibrary"]     = "@variable.builtin",
+    ["@lsp.typemod.variable.injected"]           = "@variable",
+    ["@lsp.typemod.variable.static"]             = "@constant",
+  }
 end
 
 return M
