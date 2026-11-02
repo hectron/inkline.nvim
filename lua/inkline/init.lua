@@ -6,24 +6,28 @@ local M = {}
 ---@param colors inkline.Palette
 local function dim_on_focus_lost(colors)
   local group = vim.api.nvim_create_augroup("inkline", { clear = true })
-  local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-  local winbar = vim.api.nvim_get_hl(0, { name = "WinBar" })
-
-  local function apply(bg)
-    vim.api.nvim_set_hl(0, "Normal", bg and vim.tbl_extend("force", normal, { bg = bg }) or normal)
-    vim.api.nvim_set_hl(0, "WinBar", bg and vim.tbl_extend("force", winbar, { bg = bg }) or winbar)
-  end
+  local saved ---@type table<string, vim.api.keyset.get_hl_info>?
 
   vim.api.nvim_create_autocmd("FocusLost", {
     group = group,
     callback = function()
-      apply(colors.bg_alt)
+      if saved then
+        return
+      end
+      saved = {}
+      for _, name in ipairs({ "Normal", "WinBar" }) do
+        saved[name] = vim.api.nvim_get_hl(0, { name = name })
+        vim.api.nvim_set_hl(0, name, vim.tbl_extend("force", saved[name], { bg = colors.bg_alt }))
+      end
     end,
   })
   vim.api.nvim_create_autocmd("FocusGained", {
     group = group,
     callback = function()
-      apply(nil)
+      for name, hl in pairs(saved or {}) do
+        vim.api.nvim_set_hl(0, name, hl --[[@as vim.api.keyset.highlight]])
+      end
+      saved = nil
     end,
   })
   vim.api.nvim_create_autocmd("ColorSchemePre", {
