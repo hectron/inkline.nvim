@@ -130,6 +130,24 @@ T["focus dimming"]["keeps on_highlights overrides when restoring"] = function()
   eq({ H.hl(child, "Normal", "fg"), bg("Normal") }, { "#123456", "#010101" })
 end
 
+T["focus dimming"]["keeps changes made after loading"] = function()
+  H.load(child, "{ dim_inactive_windows = true }")
+  child.api.nvim_set_hl(0, "Normal", { fg = "#123456", bg = "#010101" })
+  child.api.nvim_exec_autocmds("FocusLost", {})
+  eq(H.hl(child, "Normal", "fg"), "#123456")
+  child.api.nvim_exec_autocmds("FocusGained", {})
+  eq({ H.hl(child, "Normal", "fg"), bg("Normal") }, { "#123456", "#010101" })
+end
+
+T["focus dimming"]["restores after repeated FocusLost"] = function()
+  H.load(child, "{ dim_inactive_windows = true }")
+  local normal = bg("Normal")
+  child.api.nvim_exec_autocmds("FocusLost", {})
+  child.api.nvim_exec_autocmds("FocusLost", {})
+  child.api.nvim_exec_autocmds("FocusGained", {})
+  eq(bg("Normal"), normal)
+end
+
 T["focus dimming"]["stops after switching to another colorscheme"] = function()
   H.load(child, "{ dim_inactive_windows = true }")
   child.cmd("colorscheme default")
